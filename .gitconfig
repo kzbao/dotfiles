@@ -1,0 +1,18 @@
+[user]
+	name = Kevin Bao
+	email = kzbao93@gmail.com
+[core]
+	editor = emacsclient -c -a=
+[push]
+        default = current
+[alias]
+        amend = commit --amend
+        hist = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
+        last = diff HEAD^ HEAD
+        ignore = update-index --assume-unchanged
+[alias]
+        amend = commit --amend
+        hist = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
+        last = diff HEAD^ HEAD
+        ignore = update-index --assume-unchanged
+        unignore = update-index --no-assume-unchanged
