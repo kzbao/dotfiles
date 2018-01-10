@@ -19,7 +19,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew emacs git github osx thefuck z zsh-completions)
+plugins=(brew emacs git github osx zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -36,6 +36,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias brewall="brew update && brew upgrade && brew cleanup"
 alias python="python3"
 alias pgstart="pg_ctl -D /usr/local/var/postgres start"
 alias killemacs="emacsclient -e '(kill-emacs)'"
@@ -47,12 +48,3 @@ SAVEHIST=10000
 setopt appendhistory autocd
 bindkey -e
 # End of lines configured by zsh-newuser-install
-
-# Turn off correction suggestions
-unsetopt correct_all
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kzbao/Library/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/kzbao/Library/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kzbao/Library/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/kzbao/Library/google-cloud-sdk/completion.zsh.inc'; fi
