@@ -1,18 +1,25 @@
 [user]
 	name = Kevin Bao
-	email = kzbao93@gmail.com
+	email = kevin@karat.io
 [core]
-	editor = emacsclient -c -a=
+	editor = vim
+	excludesfile = ~/.gitignore
+
+[pager]
+	branch = false
+
 [push]
-        default = current
+	default = current
+
 [alias]
-        amend = commit --amend
+        am = commit --amend
+        st = status
+        co = checkout
+        rb = rebase
+        cm = commit -m
         hist = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
         last = diff HEAD^ HEAD
-        ignore = update-index --assume-unchanged
-[alias]
-        amend = commit --amend
-        hist = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
-        last = diff HEAD^ HEAD
+        new = checkout -b
+        hreset = reset HEAD --hard
         ignore = update-index --assume-unchanged
         unignore = update-index --no-assume-unchanged
