@@ -22,5 +22,6 @@
         ignore = update-index --assume-unchanged
         last = diff HEAD^ HEAD
         new = checkout -b
+        rb = rebase
         st = status
         unignore = update-index --no-assume-unchanged
