@@ -1,9 +1,13 @@
+;; Open org file
 (find-file "~/Dropbox/Main/todo.org")
+
+;; UI cleanup
 (setq inhibit-splash-screen t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+;; Text editing settings
 (setq-default indent-tabs-mode nil)
 (setq-default column-number-mode t
 	      line-number-mode t)
@@ -18,6 +22,7 @@
 (setq show-paren-delay 0)
 (winner-mode t)
 
+;; Package settings
 (package-initialize)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
@@ -65,7 +70,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode evil-magit yasnippet solarized-theme rainbow-mode magit helm))))
+    (company yaml-mode yasnippet solarized-theme rainbow-mode magit helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

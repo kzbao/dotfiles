@@ -36,7 +36,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias brewall="brew update && brew upgrade && brew cleanup"
+alias brewall="brew update && brew upgrade && brew cleanup && brew prune"
 alias python="python3"
 alias pgstart="pg_ctl -D /usr/local/var/postgres start"
 alias killemacs="emacsclient -e '(kill-emacs)'"
