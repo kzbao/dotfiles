@@ -1,6 +1,6 @@
 [user]
 	name = Kevin Bao
-	email = kevin@karat.io
+	email = kzbao93@gmail.com
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
@@ -12,14 +12,15 @@
 	default = current
 
 [alias]
-        am = commit --amend
-        st = status
+        amend = commit --amend --no-edit
+        br = branch
+        cm = commit
+        cma = commit -a
         co = checkout
-        rb = rebase
-        cm = commit -m
         hist = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
-        last = diff HEAD^ HEAD
-        new = checkout -b
         hreset = reset HEAD --hard
         ignore = update-index --assume-unchanged
+        last = diff HEAD^ HEAD
+        new = checkout -b
+        st = status
         unignore = update-index --no-assume-unchanged
