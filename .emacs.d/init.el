@@ -6,20 +6,19 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(winner-mode t)
 
 ;; Text editing settings
 (setq-default indent-tabs-mode nil)
 (setq-default column-number-mode t
 	      line-number-mode t)
-(setq-default x-select-enable-clipboard t)
-(setq make-backup-files nil)
-(setq org-log-done t)
-(defalias 'yes-or-no-p 'y-or-n-p)
+(setq require-final-newline t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(put 'upcase-region 'disabled nil)
-
+(delete-selection-mode t)
+(transient-mark-mode t)
 (show-paren-mode t)
 (setq show-paren-delay 0)
+
 (winner-mode t)
 
 ;; Package settings
@@ -29,18 +28,13 @@
 
 (load-theme 'solarized-dark t)
 
-(require 'yasnippet)
 (yas-global-mode t)
 
-(require 'helm)
 (require 'helm-config)
 (helm-mode 1)
 
-;; Taken from http://tuhdo.github.io/helm-intro.html
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-x h") 'helm-command-prefix)
+;; Inspired by http://tuhdo.github.io/helm-intro.html
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
@@ -53,15 +47,24 @@
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x h o") 'helm-occur)
+(global-set-key (kbd "C-c h o") 'helm-occur)
 (global-set-key (kbd "C-x C-b") 'helm-mini)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+;; Projectile settings
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+;; Magit settings
+(global-set-key (kbd "C-c g") 'magit-status)
+
+;; Other keybindings
+(global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu)
 (global-set-key (kbd "C-x C-a") 'mark-whole-buffer)
 (global-set-key (kbd "C-x C-k") 'kill-buffer)
 (global-unset-key (kbd "C-x k"))
-(global-set-key (kbd "C-x g") 'magit-status)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -70,7 +73,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company yaml-mode yasnippet solarized-theme rainbow-mode magit helm))))
+    (company json-mode gnugo helm helm-projectile magit mines projectile rainbow-mode solarized-theme web-mode yaml-mode yasnippet))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
