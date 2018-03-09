@@ -1,3 +1,8 @@
+;; Package settings
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://stable.melpa.org/packages/"))
+(package-initialize)
+
 ;; Open org file
 (find-file "~/Dropbox/Main/todo.org")
 
@@ -6,7 +11,12 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(winner-mode t)
+
+;; Program settings
+(setq-default x-select-enable-clipboard t)
+(setq make-backup-files nil)
+(setq org-log-done t)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Text editing settings
 (setq-default indent-tabs-mode nil)
@@ -18,22 +28,16 @@
 (transient-mark-mode t)
 (show-paren-mode t)
 (setq show-paren-delay 0)
-
 (winner-mode t)
 
-;; Package settings
-(package-initialize)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
+;; Solarized theme
 (load-theme 'solarized-dark t)
 
-(yas-global-mode t)
-
+;; Helm
 (require 'helm-config)
 (helm-mode 1)
 
-;; Inspired by http://tuhdo.github.io/helm-intro.html
+;; Taken from http://tuhdo.github.io/helm-intro.html
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
 
@@ -52,19 +56,21 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
-;; Projectile settings
+;; Projectile
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+(projectile-rails-global-mode)
 
-;; Magit settings
+;; Flymake
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+(global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu)
+
+;; Magit
 (global-set-key (kbd "C-c g") 'magit-status)
 
-;; Other keybindings
-(global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu)
-(global-set-key (kbd "C-x C-a") 'mark-whole-buffer)
-(global-set-key (kbd "C-x C-k") 'kill-buffer)
-(global-unset-key (kbd "C-x k"))
+;; Yasnippet
+(yas-global-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -73,7 +79,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company json-mode gnugo helm helm-projectile magit mines projectile rainbow-mode solarized-theme web-mode yaml-mode yasnippet))))
+    (ag company csv-mode flymake-ruby helm helm-ag helm-core helm-projectile json-mode magit poker projectile projectile-rails rainbow-mode solarized-theme web-mode yaml-mode yasnippet))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
