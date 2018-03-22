@@ -21,8 +21,10 @@
 (setq auto-save-default nil)
 (setq org-log-done t)
 (global-auto-revert-mode 1)
+(recentf-mode 1)
 (winner-mode 1)
 (windmove-default-keybindings)
+(defalias 'sh 'ansi-term)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
@@ -35,6 +37,9 @@
 (setq scroll-margin 2)
 (setq search-whitespace-regexp "[-_ \t\n]+")
 (delete-selection-mode 1)
+(electric-pair-mode 1)
+(global-hl-line-mode 1)
+(global-linum-mode 1)
 (transient-mark-mode 1)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
@@ -49,20 +54,72 @@
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-x C-e") 'eval-region)
 
+(defun beginning-of-line-or-indentation ()
+  (interactive)
+  (if (bolp)
+      (back-to-indentation)
+    (beginning-of-line)))
+(global-set-key [remap move-beginning-of-line]
+                'beginning-of-line-or-indentation)
+
 (setq custom-safe-themes t)
 (use-package solarized-theme
   :config
-  (setq solarized-distinct-fringe-background nil)
   (setq solarized-use-variable-pitch nil)
   (setq x-underline-at-descent-line t)
-  ;(setq solarized-high-contrast-mode-line t)
   (load-theme 'solarized-dark t))
 
 (use-package powerline
   :config
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'slant)
-  (powerline-default-theme))
+  (defface powerline-green '((t (:background "#728a05" :foreground "#042028" :inherit mode-line)))
+    "Solarized green for powerline")
+  (defface powerline-silver '((t (:background "#708183" :foreground "#042028" :inherit mode-line)))
+    "Solarized silver for powerline")
+  (setq-default mode-line-format
+                '("%e"
+                  (:eval
+                   (let* ((active (powerline-selected-window-active))
+                          (face-accent (if active 'powerline-green 'powerline-inactive1))
+                          (face1 (if active 'powerline-silver 'powerline-inactive2))
+                          (face2 (if active 'powerline-active2 'powerline-inactive1))
+                          (separator-left (intern (format "powerline-%s-%s"
+                                                          (powerline-current-separator)
+                                                          (car powerline-default-separator-dir))))
+                          (separator-right (intern (format "powerline-%s-%s"
+                                                           (powerline-current-separator)
+                                                           (cdr powerline-default-separator-dir))))
+                          (height 20)
+                          (lhs (list (powerline-raw "%*" face-accent 'l)
+                                     (powerline-buffer-id face-accent 'l)
+                                     (powerline-raw " " face-accent)
+                                     (funcall separator-left face-accent face1 height)
+                                     (when (and (boundp 'which-function-mode) which-function-mode)
+                                       (powerline-raw which-func-current face1 'l))
+                                     (powerline-raw " " face1)
+                                     (funcall separator-left face1 face2 height)
+                                     (when (boundp 'erc-modified-channels-object)
+                                       (powerline-raw erc-modified-channels-object face2 'l))
+                                     (powerline-major-mode face2 'l)
+                                     (powerline-process face2)
+                                     (powerline-minor-modes face2 'l)
+                                     (powerline-narrow face2 'l)))
+                          (rhs (list (powerline-raw global-mode-string face2 'r)
+                                     (powerline-vc face2 'r)
+                                     (funcall separator-right face2 face1 height)
+                                     (powerline-raw " " face1)
+                                     (powerline-raw "%l" face1 'r)
+                                     (powerline-raw ":" face1 'r)
+                                     (powerline-raw "%c" face1 'r)
+                                     (funcall separator-right face1 face2 height)
+                                     (powerline-raw " " face2)
+                                     (powerline-raw "%p" face2 'r)
+                                     (when powerline-display-hud
+                                       (powerline-hud face-accent face2)))))
+                     (concat (powerline-render lhs)
+                             (powerline-fill face2 (powerline-width rhs))
+                             (powerline-render rhs)))))))
 
 (use-package helm
   :ensure t
@@ -108,7 +165,7 @@
   (helm-projectile-on)
   (bind-keys*
    ("C-c C-f" . helm-projectile-find-file)
-   ("C-c C-s" . helm-projectile-grep)))
+   ("C-c C-s" . helm-projectile-ag)))
 
 (use-package projectile-rails
   :diminish projectile-rails-mode
@@ -129,7 +186,7 @@
 ;; Flymake
 (use-package flymake-cursor)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(global-set-key (kbd "C-c C-f") 'flymake-popup-current-error-menu)
+(global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -145,3 +202,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'narrow-to-region 'disabled nil)
