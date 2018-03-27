@@ -1,8 +1,11 @@
-;; Package settings
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://stable.melpa.org/packages/"))
-(package-initialize)
-(require 'use-package)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ag company csv-mode flymake-cursor helm helm-ag helm-core helm-projectile json-mode magit poker powerline projectile rainbow-mode solarized-theme use-package web-mode yaml-mode yasnippet))))
 
 ;; Open org file
 (find-file "~/Dropbox/Main/todo.org")
@@ -61,6 +64,12 @@
     (beginning-of-line)))
 (global-set-key [remap move-beginning-of-line]
                 'beginning-of-line-or-indentation)
+
+;; Package settings
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://stable.melpa.org/packages/"))
+(package-initialize)
+(require 'use-package)
 
 (setq custom-safe-themes t)
 (use-package solarized-theme
@@ -188,14 +197,6 @@
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ag color-theme-sanityinc-tomorrow company csv-mode flymake-cursor flymake-ruby helm helm-ag helm-core helm-projectile json-mode magit poker powerline projectile projectile-rails rainbow-mode solarized-theme use-package web-mode yaml-mode yasnippet))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
