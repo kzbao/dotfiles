@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ag company csv-mode flymake-cursor helm helm-ag helm-core helm-projectile json-mode magit poker powerline projectile rainbow-mode solarized-theme use-package web-mode yaml-mode yasnippet))))
+    (ag company csv-mode flymake-cursor helm helm-ag helm-core helm-projectile helm-swoop json-mode magit poker powerline projectile rainbow-mode solarized-theme use-package web-mode yaml-mode yasnippet zenburn-theme))))
 
 ;; Open org file
 (find-file "~/Dropbox/Main/todo.org")
@@ -152,13 +152,33 @@
    ("C-x C-b" . helm-mini)
    ("C-x C-f" . helm-find-files)
    ("M-y" . helm-show-kill-ring)
-   ("C-c h o" . helm-occur)
    :map helm-command-map
    ("o" . helm-occur)
    :map helm-map
    ("<tab>" . helm-execute-persistent-action)
    ("C-i" . helm-execute-persistent-action)
    ("C-z" . helm-select-action)
+   ("C-w" . backward-kill-word)))
+
+(use-package helm-swoop
+  :config
+  (setq helm-multi-swoop-edit-save t)
+  (setq helm-swoop-use-line-number-face t)
+  :bind
+  (("M-i" . helm-swoop)
+   ("M-I" . helm-swoop-back-to-last-point)
+   ("C-c M-i" . helm-multi-swoop)
+   ("C-x M-i" . helm-multi-swoop-all)
+   :map isearch-mode-map
+   ("M-i" . helm-swoop-from-isearch)
+   :map helm-swoop-map
+   ("M-i" . helm-multi-swoop-all-from-helm-swoop)
+   ("C-r" . helm-previous-line)
+   ("C-s" . helm-next-line)
+   ("C-w" . backward-kill-word)
+   :map helm-multi-swoop-map
+   ("C-r" . helm-previous-line)
+   ("C-s" . helm-next-line)
    ("C-w" . backward-kill-word)))
 
 (use-package projectile
@@ -176,11 +196,6 @@
    ("C-c C-f" . helm-projectile-find-file)
    ("C-c C-s" . helm-projectile-ag)))
 
-(use-package projectile-rails
-  :diminish projectile-rails-mode
-  :config
-  (projectile-rails-global-mode 1))
-
 (use-package magit
   :ensure t
   :bind
@@ -194,7 +209,6 @@
 
 ;; Flymake
 (use-package flymake-cursor)
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu)
 
 (custom-set-faces
