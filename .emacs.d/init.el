@@ -202,14 +202,24 @@
   ("C-c g" . magit-status)
   ("C-x g" . magit-status))
 
+(use-package company
+  :ensure t
+  :diminish company-mode
+  :config
+  (setq company-idle-delay 0.1)
+  (setq company-minimum-prefix-length 2))
+
 (use-package yasnippet
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
 
 ;; Flymake
-(use-package flymake-cursor)
-(global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu)
+(use-package flymake
+  :diminish flymake-mode
+  :config
+  (require 'flymake-cursor)
+  (global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
