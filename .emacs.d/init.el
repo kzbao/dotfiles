@@ -1,12 +1,3 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ag company csv-mode flymake-cursor helm helm-ag helm-core helm-projectile helm-swoop json-mode magit poker powerline projectile rainbow-mode solarized-theme use-package web-mode yaml-mode yasnippet zenburn-theme))))
-
 ;; Open org file
 (find-file "~/Dropbox/Main/todo.org")
 
@@ -71,14 +62,88 @@
 (package-initialize)
 (require 'use-package)
 
-(setq custom-safe-themes t)
-(use-package solarized-theme
+(use-package company
+  :ensure t
+  :diminish company-mode
   :config
-  (setq solarized-use-variable-pitch nil)
-  (setq x-underline-at-descent-line t)
-  (load-theme 'solarized-dark t))
+  (setq company-idle-delay 1)
+  (setq company-minimum-prefix-length 2)
+  :bind
+  ("C-c c" . company-mode))
+
+(use-package flymake
+  :diminish flymake-mode
+  :config
+  (require 'flymake-cursor)
+  (global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu))
+
+(use-package helm
+  :ensure t
+  :diminish helm-mode
+  :init
+  (require 'helm-config)
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c"))
+  :config
+  (setq helm-split-window-in-side-p t
+        helm-ff-file-name-history-use-recentf t
+        helm-ff-skip-boring-files t
+        helm-echo-input-inheader-line t
+        helm-ff-newfile-prompt-p nil)
+  (helm-mode 1)
+  (helm-adaptive-mode 1)
+  :bind
+  (("M-x" . helm-M-x)
+   ("C-x C-m" . helm-M-x)
+   ("C-x b" . helm-mini)
+   ("C-x C-b" . helm-mini)
+   ("C-x C-f" . helm-find-files)
+   ("M-y" . helm-show-kill-ring)
+   :map helm-command-map
+   ("o" . helm-occur)
+   :map helm-map
+   ("<tab>" . helm-execute-persistent-action)
+   ("C-i" . helm-execute-persistent-action)
+   ("C-z" . helm-select-action)
+   ("C-w" . backward-kill-word)))
+
+(use-package helm-swoop
+  :ensure t
+  :config
+  (setq helm-multi-swoop-edit-save t)
+  (setq helm-swoop-use-line-number-face t)
+  :bind
+  (("M-i" . helm-swoop)
+   ("M-I" . helm-swoop-back-to-last-point)
+   ("C-c M-i" . helm-multi-swoop)
+   ("C-x M-i" . helm-multi-swoop-all)
+   :map isearch-mode-map
+   ("M-i" . helm-swoop-from-isearch)
+   :map helm-swoop-map
+   ("M-i" . helm-multi-swoop-all-from-helm-swoop)
+   ("C-r" . helm-previous-line)
+   ("C-s" . helm-next-line)
+   ("C-w" . backward-kill-word)
+   :map helm-multi-swoop-map
+   ("C-r" . helm-previous-line)
+   ("C-s" . helm-next-line)
+   ("C-w" . backward-kill-word)))
+
+(use-package magit
+  :ensure t
+  :bind
+  ("C-c g" . magit-status)
+  ("C-x g" . magit-status))
+
+(use-package neotree
+  :ensure t
+  :config
+  (setq neo-theme 'nerd)
+  :bind
+  ("C-c t" . neotree-toggle))
 
 (use-package powerline
+  :ensure t
   :config
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'slant)
@@ -130,57 +195,6 @@
                              (powerline-fill face2 (powerline-width rhs))
                              (powerline-render rhs)))))))
 
-(use-package helm
-  :ensure t
-  :diminish helm-mode
-  :init
-  (require 'helm-config)
-  (global-set-key (kbd "C-c h") 'helm-command-prefix)
-  (global-unset-key (kbd "C-x c"))
-  :config
-  (setq helm-split-window-in-side-p t
-        helm-ff-file-name-history-use-recentf t
-        helm-ff-skip-boring-files t
-        helm-echo-input-inheader-line t
-        helm-ff-newfile-prompt-p nil)
-  (helm-mode 1)
-  (helm-adaptive-mode 1)
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x C-m" . helm-M-x)
-   ("C-x b" . helm-mini)
-   ("C-x C-b" . helm-mini)
-   ("C-x C-f" . helm-find-files)
-   ("M-y" . helm-show-kill-ring)
-   :map helm-command-map
-   ("o" . helm-occur)
-   :map helm-map
-   ("<tab>" . helm-execute-persistent-action)
-   ("C-i" . helm-execute-persistent-action)
-   ("C-z" . helm-select-action)
-   ("C-w" . backward-kill-word)))
-
-(use-package helm-swoop
-  :config
-  (setq helm-multi-swoop-edit-save t)
-  (setq helm-swoop-use-line-number-face t)
-  :bind
-  (("M-i" . helm-swoop)
-   ("M-I" . helm-swoop-back-to-last-point)
-   ("C-c M-i" . helm-multi-swoop)
-   ("C-x M-i" . helm-multi-swoop-all)
-   :map isearch-mode-map
-   ("M-i" . helm-swoop-from-isearch)
-   :map helm-swoop-map
-   ("M-i" . helm-multi-swoop-all-from-helm-swoop)
-   ("C-r" . helm-previous-line)
-   ("C-s" . helm-next-line)
-   ("C-w" . backward-kill-word)
-   :map helm-multi-swoop-map
-   ("C-r" . helm-previous-line)
-   ("C-s" . helm-next-line)
-   ("C-w" . backward-kill-word)))
-
 (use-package projectile
   :ensure t
   :config
@@ -196,31 +210,29 @@
    ("C-c C-f" . helm-projectile-find-file)
    ("C-c C-s" . helm-projectile-ag)))
 
-(use-package magit
+(setq custom-safe-themes t)
+(use-package solarized-theme
   :ensure t
-  :bind
-  ("C-c g" . magit-status)
-  ("C-x g" . magit-status))
-
-(use-package company
-  :ensure t
-  :diminish company-mode
   :config
-  (setq company-idle-delay 0.1)
-  (setq company-minimum-prefix-length 2))
+  (setq solarized-distinct-fringe-background t)
+  (setq solarized-use-variable-pitch nil)
+  (setq x-underline-at-descent-line t)
+  (load-theme 'solarized-dark t))
 
 (use-package yasnippet
+  :ensure t
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
 
-;; Flymake
-(use-package flymake
-  :diminish flymake-mode
-  :config
-  (require 'flymake-cursor)
-  (global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu))
-
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ag aggressive-indent company csv-mode flymake-cursor helm helm-ag helm-core helm-projectile helm-swoop json-mode magit neotree poker powerline projectile rainbow-mode solarized-theme treemacs use-package web-mode yaml-mode yasnippet zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
