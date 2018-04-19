@@ -1,6 +1,6 @@
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/elisp/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 (load-library "options")
 (load-library "aliases")
 (load-library "packages")
