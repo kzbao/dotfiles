@@ -5,7 +5,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 export EDITOR="emacs -nw"
 
 # Oh-my-zsh
-export ZSH=/Users/Kevin/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 ZSH_THEME="fishy"
 plugins=(aws emacs git github osx rails zsh-completions)
 source $ZSH/oh-my-zsh.sh
