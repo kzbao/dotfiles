@@ -2,15 +2,15 @@
 	name = Kevin Bao
 	email = kzbao93@gmail.com
 [core]
-	editor = vim
+	editor = emacs -nw
 	excludesfile = ~/.gitignore
-
+[branch]
+	autosetuprebase = always
+	autosetupmerge = always
 [pager]
 	branch = false
-
 [push]
 	default = current
-
 [alias]
         amend = commit --amend --no-edit
         br = branch
