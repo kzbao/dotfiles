@@ -1,6 +1,11 @@
-*
+/*
 
-# Files to keep
+# Track emacs elisp but ignore the rest
+!.emacs.d
+.emacs.d/*
 !.emacs.d/init.el
+!.emacs.d/elisp
+
+# Other files to keep
 !.gitignore
 !.zshrc
