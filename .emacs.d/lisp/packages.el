@@ -147,7 +147,6 @@
 (setq custom-safe-themes t)
 (use-package solarized-theme
   :config
-  (setq solarized-distinct-fringe-background t)
   (setq solarized-use-variable-pitch nil)
   (setq x-underline-at-descent-line t)
   (load-theme 'solarized-dark t))
