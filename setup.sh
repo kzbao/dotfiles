@@ -6,4 +6,6 @@ for file in .emacs.d/lisp/*; do
 done
 
 ln -s "$PWD/.gitconfig" ~/.gitconfig
+ln -s "$PWD/.gitignore" ~/.gitignore
+
 ln -s "$PWD/.zshrc" ~/.zshrc
