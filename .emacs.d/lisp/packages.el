@@ -12,12 +12,6 @@
   :bind
   ("C-c c" . company-mode))
 
-(use-package flymake
-  :diminish flymake-mode
-  :config
-  (require 'flymake-cursor)
-  (global-set-key (kbd "C-c f") 'flymake-popup-current-error-menu))
-
 (use-package helm
   :diminish helm-mode
   :init

@@ -1,4 +1,4 @@
-# Variables
+# Environment Variables
 export PATH=/usr/local/bin:$HOME/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -7,7 +7,7 @@ export EDITOR="emacs -nw"
 # Oh-my-zsh
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="fishy"
-plugins=(aws emacs git github osx rails zsh-completions)
+plugins=(aws docker emacs git github osx postgres python rails ruby ssh-agent zsh-completions)
 source $ZSH/oh-my-zsh.sh
 
 # Options
@@ -26,9 +26,9 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
 # Aliases
-alias ke="emacsclient -e '(kill-emacs)'"
-alias mysql="mysql -uroot"
 alias brewall='brew update && brew upgrade && brew cleanup && brew prune'
+alias ke="emacsclient -e '(kill-emacs)'"
+alias pg="pg_ctl -D /usr/local/var/postgres start"
 
 # Don't mess with R
 disable r

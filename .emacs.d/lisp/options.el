@@ -18,19 +18,21 @@
 (defalias 'sh 'ansi-term)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+(setq disabled-command-function nil)
 
 ;; Text editing settings
 (setq-default indent-tabs-mode nil)
 (setq column-number-mode t
       line-number-mode t)
 (setq require-final-newline t)
+(setq auto-hscroll-mode 'current-line)
 (setq line-move-visual t)
 (setq scroll-margin 2)
 (setq search-whitespace-regexp "[-_ \t\n]+")
 (delete-selection-mode 1)
 (electric-pair-mode 1)
+(global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
-(global-linum-mode 1)
 (transient-mark-mode 1)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
