@@ -7,21 +7,34 @@
 [branch]
 	autosetuprebase = always
 	autosetupmerge = always
+[fetch]
+        prune = true
 [pager]
 	branch = false
 [push]
 	default = current
 [alias]
-        amend = commit --amend --no-edit
-        br = branch
-        cm = commit
-        cma = commit -a
-        co = checkout
-        hist = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
-        hreset = reset HEAD --hard
+        a = add
+        b = branch
+        bb = checkout
+        bc = checkout -b
+        bk = branch -D
+        c = commit
+        ca = commit --amend
+        cc = commit -a
+        ce = commit --amend --no-edit
+        d = diff
+        f = fetch --all
+        ff = pull
+        h = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
         ignore = update-index --assume-unchanged
-        last = diff HEAD^ HEAD
-        new = checkout -b
-        rb = rebase
-        st = status
+        k = checkout --
+        l = diff HEAD^ HEAD
+        p = push
+        pf = push -f
+        pu = push -u origin
+        r = rebase
+        rc = rebase --continue
+        s = status
         unignore = update-index --no-assume-unchanged
+        z = stash
