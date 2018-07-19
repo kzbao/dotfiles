@@ -9,8 +9,7 @@
   :config
   (setq company-idle-delay 1)
   (setq company-minimum-prefix-length 2)
-  :bind
-  ("C-c c" . company-mode))
+  (global-company-mode t))
 
 (use-package helm
   :diminish helm-mode
