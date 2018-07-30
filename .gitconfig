@@ -30,11 +30,14 @@
         ignore = update-index --assume-unchanged
         k = checkout --
         l = diff HEAD^ HEAD
+        ms = merge --squash
         p = push
         pf = push -f
         pu = push -u origin
         r = rebase
         rc = rebase --continue
+        ri = rebase --interactive
         s = status
         unignore = update-index --no-assume-unchanged
         z = stash
+        zp = stash pop

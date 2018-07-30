@@ -63,8 +63,10 @@
 
 (use-package magit
   :bind
-  ("C-c g" . magit-status)
-  ("C-x g" . magit-status))
+  ("C-c C-g" . magit-status)
+  ("C-x g" . magit-status)
+  ("C-c g b" . magit-log-buffer-file)
+  ("C-c g d" . magit-log-trace-definition))
 
 (use-package neotree
   :config
@@ -133,8 +135,8 @@
 (use-package helm-projectile
   :config
   (helm-projectile-on)
-  (bind-keys*
-   ("C-c C-f" . helm-projectile-find-file)
+  :bind
+  (("C-c C-f" . helm-projectile-find-file)
    ("C-c C-s" . helm-projectile-ag)))
 
 (setq custom-safe-themes t)
