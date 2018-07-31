@@ -15,7 +15,6 @@
 (recentf-mode 1)
 (winner-mode 1)
 (windmove-default-keybindings)
-(defalias 'sh 'ansi-term)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (setq disabled-command-function nil)

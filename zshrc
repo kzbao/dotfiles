@@ -14,7 +14,6 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e
 setopt AUTO_CD
 setopt AUTO_PARAM_SLASH
-setopt RM_STAR_WAIT
 HYPHEN_INSENSITIVE="true"
 
 # History
