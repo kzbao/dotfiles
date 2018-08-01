@@ -42,3 +42,7 @@
 (which-function-mode 1)
 (setq which-func-unknown "")
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Basic language settings
+(setq js-indent-level 2)
+(setq css-indent-level 2)

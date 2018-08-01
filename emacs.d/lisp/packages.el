@@ -162,6 +162,14 @@
         undo-tree-visualizer-diff t)
   (global-undo-tree-mode))
 
+(use-package web-mode
+  :mode ("\\.html?\\'")
+  :config
+  (setq web-mode-markup-indent-offset 2
+        web-mode-code-indent-offset 2)
+  (setq web-mode-enable-current-element-highlight t
+        web-mode-enable-current-column-highlight t))
+
 (use-package yasnippet
   :diminish yas-minor-mode
   :config
