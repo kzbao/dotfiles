@@ -1,8 +1,10 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://stable.melpa.org/packages/"))
 
-(require 'use-package)
-(setq use-package-always-ensure t)
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(setq use-package-always-ensure t
+      use-package-verbose t)
 
 (use-package aggressive-indent
   :bind
@@ -11,9 +13,11 @@
 (use-package company
   :diminish company-mode
   :config
-  (setq company-idle-delay 1)
+  (setq company-idle-delay 0.3)
   (setq company-minimum-prefix-length 2)
-  (global-company-mode t))
+  (global-company-mode t)
+  :bind
+  ("C-c c" . company-mode))
 
 (use-package helm
   :diminish helm-mode
@@ -67,10 +71,9 @@
 
 (use-package magit
   :bind
-  ("C-c C-g" . magit-status)
-  ("C-x g" . magit-status)
+  (("C-x g" . magit-status)
   ("C-c g b" . magit-log-buffer-file)
-  ("C-c g d" . magit-log-trace-definition))
+  ("C-c g d" . magit-log-trace-definition)))
 
 (use-package neotree
   :config
@@ -143,12 +146,21 @@
   (("C-c C-f" . helm-projectile-find-file)
    ("C-c C-s" . helm-projectile-ag)))
 
+(use-package rainbow-mode)
+
 (setq custom-safe-themes t)
 (use-package solarized-theme
   :config
   (setq solarized-use-variable-pitch nil)
   (setq x-underline-at-descent-line t)
   (load-theme 'solarized-dark t))
+
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-visualizer-diff t)
+  (global-undo-tree-mode))
 
 (use-package yasnippet
   :diminish yas-minor-mode

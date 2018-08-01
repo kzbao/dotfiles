@@ -22,6 +22,7 @@
         cc = commit
         ca = commit --amend
         ce = commit --amend --no-edit
+        cu = reset HEAD^ --soft
         d = diff
 	dh = diff HEAD
         f = fetch origin
