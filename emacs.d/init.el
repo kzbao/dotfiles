@@ -8,4 +8,4 @@
 (setq user-full-name "Kevin Bao"
       user-mail-address "kzbao93@gmail.com")
 
-(find-file "~/Dropbox/Main/todo.org")
+(find-file "~/Dropbox/Main/personal.org")
