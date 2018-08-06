@@ -143,8 +143,8 @@
   :config
   (helm-projectile-on)
   :bind
-  (("C-c C-f" . helm-projectile-find-file)
-   ("C-c C-s" . helm-projectile-ag)))
+  (("C-x M-f" . helm-projectile-find-file)
+   ("C-x M-s" . helm-projectile-ag)))
 
 (use-package rainbow-mode)
 
