@@ -160,15 +160,25 @@
   :config
   (setq undo-tree-visualizer-timestamps t
         undo-tree-visualizer-diff t)
-  (global-undo-tree-mode))
+  (global-undo-tree-mode 1))
 
 (use-package web-mode
-  :mode ("\\.html?\\'")
+  :mode ("\\.html?\\'" . web-mode)
   :config
   (setq web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
         web-mode-code-indent-offset 2)
   (setq web-mode-enable-current-element-highlight t
-        web-mode-enable-current-column-highlight t))
+        web-mode-enable-current-column-highlight t)
+  (setq web-mode-enable-auto-closing t
+        web-mode-enable-auto-opening t
+        web-mode-enable-auto-pairing t))
+
+(use-package which-key
+  :config
+  (which-key-mode 1)
+  :bind
+  ("C-x w" . which-key-mode))
 
 (use-package yasnippet
   :diminish yas-minor-mode
