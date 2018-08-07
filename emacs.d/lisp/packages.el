@@ -69,6 +69,10 @@
    ("C-s" . helm-next-line)
    ("C-w" . backward-kill-word)))
 
+(use-package key-chord
+  :config
+  (key-chord-mode 1))
+
 (use-package magit
   :bind
   (("C-x g" . magit-status)
