@@ -5,12 +5,13 @@
 	editor = emacs -nw
 	excludesfile = ~/.gitignore
 [branch]
-	autosetuprebase = always
 	autosetupmerge = always
 [fetch]
         prune = true
 [pager]
 	branch = false
+[pull]
+        rebase = true
 [push]
 	default = current
 [alias]
