@@ -1,47 +1,47 @@
 [user]
-	name = Kevin Bao
-	email = kzbao93@gmail.com
+  name = Kevin Bao
+  email = kzbao93@gmail.com
 [core]
-	editor = emacs -nw
-	excludesfile = ~/.gitignore
+  editor = emacs -nw
+  excludesfile = ~/.gitignore
 [branch]
-	autosetupmerge = always
+  autosetupmerge = always
 [fetch]
-        prune = true
+  prune = true
 [pager]
-	branch = false
+  branch = false
 [pull]
-        rebase = true
+  rebase = true
 [push]
-	default = current
+  default = current
 [alias]
-        a = add
-        b = branch
-        bb = checkout
-        bc = checkout -b
-        bk = branch -D
-        cc = commit
-        ca = commit --amend
-        ce = commit --amend --no-edit
-        cu = reset HEAD^ --soft
-        d = diff
-	dh = diff HEAD
-        f = fetch origin
-        ff = pull
-        h = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
-        ignore = update-index --assume-unchanged
-        k = checkout --
-	kh = reset HEAD
-	kx = reset HEAD --hard
-        l = diff HEAD^ HEAD
-        ms = merge --squash
-        pp = push
-        pf = push -f
-        pu = push -u origin
-        rb = rebase
-        rc = rebase --continue
-        ri = rebase --interactive
-        s = status
-        unignore = update-index --no-assume-unchanged
-        z = stash
-        zp = stash pop
+  a  = add
+  b  = branch
+  bb = checkout
+  bc = checkout -b
+  bk = branch -D
+  cc = commit
+  ca = commit --amend
+  ce = commit --amend --no-edit
+  cu = reset HEAD^ --soft
+  d  = diff
+  dh = diff HEAD
+  f  = fetch origin
+  ff = pull
+  h  = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
+  k  = checkout --
+  kh = reset HEAD
+  kx = reset HEAD --hard
+  l  = diff HEAD^ HEAD
+  ms = merge --squash
+  pp = push
+  pf = push -f
+  pu = push -u origin
+  rb = rebase
+  rc = rebase --continue
+  ri = rebase --interactive
+  s  = status
+  z  = stash
+  zp = stash pop
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
