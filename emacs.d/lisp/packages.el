@@ -89,17 +89,19 @@
   :config
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'slant)
-  (defface powerline-green '((t (:background "#728a05" :foreground "#042028" :inherit mode-line)))
-    "Solarized green for powerline")
-  (defface powerline-silver '((t (:background "#708183" :foreground "#042028" :inherit mode-line)))
-    "Solarized silver for powerline")
+  (defface powerline-set1 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
+    "Powerline color set 1")
+  (defface powerline-set2 '((t (:background "#9ca0a4" :foreground "#1f5582" :inherit mode-line)))
+    "Powerline color set 2")
+  (defface powerline-set3 '((t (:background "#1c1f24" :foreground "#7bc275" :inherit mode-line)))
+    "Powerline color set 3")
   (setq-default mode-line-format
                 '("%e"
                   (:eval
                    (let* ((active (powerline-selected-window-active))
-                          (face-accent (if active 'powerline-green 'powerline-inactive1))
-                          (face1 (if active 'powerline-silver 'powerline-inactive2))
-                          (face2 (if active 'powerline-active2 'powerline-inactive1))
+                          (face-accent (if active 'powerline-set1 'powerline-inactive1))
+                          (face1 (if active 'powerline-set2 'powerline-inactive2))
+                          (face2 (if active 'powerline-set3 'powerline-inactive1))
                           (separator-left (intern (format "powerline-%s-%s"
                                                           (powerline-current-separator)
                                                           (car powerline-default-separator-dir))))
@@ -127,12 +129,7 @@
                                      (powerline-raw " " face1)
                                      (powerline-raw "%l" face1 'r)
                                      (powerline-raw ":" face1 'r)
-                                     (powerline-raw "%c" face1 'r)
-                                     (funcall separator-right face1 face2 height)
-                                     (powerline-raw " " face2)
-                                     (powerline-raw "%p" face2 'r)
-                                     (when powerline-display-hud
-                                       (powerline-hud face-accent face2)))))
+                                     (powerline-raw "%c" face1 'r))))
                      (concat (powerline-render lhs)
                              (powerline-fill face2 (powerline-width rhs))
                              (powerline-render rhs)))))))
@@ -153,11 +150,18 @@
 (use-package rainbow-mode)
 
 (setq custom-safe-themes t)
-(use-package solarized-theme
+
+(use-package doom-themes
   :config
-  (setq solarized-use-variable-pitch nil)
-  (setq x-underline-at-descent-line t)
-  (load-theme 'solarized-dark t))
+  (setq doom-vibrant-brighter-comments t)
+  (load-theme 'doom-vibrant t)
+  (doom-themes-org-config))
+
+; (use-package solarized-theme
+;  :config
+;  (setq solarized-use-variable-pitch nil)
+;  (setq x-underline-at-descent-line t)
+;  (load-theme 'solarized-dark t))
 
 (use-package undo-tree
   :diminish undo-tree-mode
