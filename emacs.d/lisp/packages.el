@@ -89,9 +89,9 @@
   :config
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'slant)
-  (defface powerline-set1 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
+  (defface powerline-set1 '((t (:background "#1c1f24" :foreground "#51afef" :inherit mode-line)))
     "Powerline color set 1")
-  (defface powerline-set2 '((t (:background "#9ca0a4" :foreground "#1f5582" :inherit mode-line)))
+  (defface powerline-set2 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
     "Powerline color set 2")
   (defface powerline-set3 '((t (:background "#1c1f24" :foreground "#7bc275" :inherit mode-line)))
     "Powerline color set 3")
@@ -99,7 +99,7 @@
                 '("%e"
                   (:eval
                    (let* ((active (powerline-selected-window-active))
-                          (face-accent (if active 'powerline-set1 'powerline-inactive1))
+                          (face0 (if active 'powerline-set1 'powerline-inactive1))
                           (face1 (if active 'powerline-set2 'powerline-inactive2))
                           (face2 (if active 'powerline-set3 'powerline-inactive1))
                           (separator-left (intern (format "powerline-%s-%s"
@@ -109,10 +109,10 @@
                                                            (powerline-current-separator)
                                                            (cdr powerline-default-separator-dir))))
                           (height 20)
-                          (lhs (list (powerline-raw "%*" face-accent 'l)
-                                     (powerline-buffer-id face-accent 'l)
-                                     (powerline-raw " " face-accent)
-                                     (funcall separator-left face-accent face1 height)
+                          (lhs (list (powerline-raw "%*" face0 'l)
+                                     (powerline-buffer-id face0 'l)
+                                     (powerline-raw " " face0)
+                                     (funcall separator-left face0 face1 height)
                                      (when (and (boundp 'which-function-mode) which-function-mode)
                                        (powerline-raw which-func-current face1 'l))
                                      (powerline-raw " " face1)
@@ -121,8 +121,7 @@
                                        (powerline-raw erc-modified-channels-object face2 'l))
                                      (powerline-major-mode face2 'l)
                                      (powerline-process face2)
-                                     (powerline-minor-modes face2 'l)
-                                     (powerline-narrow face2 'l)))
+                                     (powerline-minor-modes face2 'l)))
                           (rhs (list (powerline-raw global-mode-string face2 'r)
                                      (powerline-vc face2 'r)
                                      (funcall separator-right face2 face1 height)
@@ -153,7 +152,8 @@
 
 (use-package doom-themes
   :config
-  (setq doom-vibrant-brighter-comments t)
+  (setq doom-vibrant-brighter-modeline t
+        doom-vibrant-brighter-comments t)
   (load-theme 'doom-vibrant t)
   (doom-themes-org-config))
 
