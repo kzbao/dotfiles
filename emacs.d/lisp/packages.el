@@ -82,6 +82,7 @@
 (use-package neotree
   :config
   (setq neo-theme 'nerd)
+  (add-hook 'neotree-mode-hook (lambda () (visual-line-mode -1)))
   :bind
   ("C-c t" . neotree-toggle))
 
