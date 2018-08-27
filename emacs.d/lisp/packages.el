@@ -79,6 +79,10 @@
   ("C-c g b" . magit-log-buffer-file)
   ("C-c g d" . magit-log-trace-definition)))
 
+(use-package multiple-cursors
+  :bind
+  ("C-c m" . mc/edit-lines))
+
 (use-package neotree
   :config
   (setq neo-theme 'nerd)
