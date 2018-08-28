@@ -162,11 +162,11 @@
   (load-theme 'doom-vibrant t)
   (doom-themes-org-config))
 
-; (use-package solarized-theme
-;  :config
-;  (setq solarized-use-variable-pitch nil)
-;  (setq x-underline-at-descent-line t)
-;  (load-theme 'solarized-dark t))
+;; (use-package solarized-theme
+;;  :config
+;;  (setq solarized-use-variable-pitch nil
+;;        x-underline-at-descent-line t)
+;;  (load-theme 'solarized-dark t))
 
 (use-package undo-tree
   :diminish undo-tree-mode

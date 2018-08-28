@@ -33,7 +33,6 @@
       scroll-preserve-screen-position 1)
 (setq search-whitespace-regexp "[-_ \t\n]+")
 (delete-selection-mode 1)
-(electric-pair-mode 1)
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (transient-mark-mode 1)
