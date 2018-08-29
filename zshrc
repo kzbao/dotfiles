@@ -27,6 +27,7 @@ setopt HIST_IGNORE_ALL_DUPS
 # Aliases
 alias brewall='brew update && brew upgrade && brew cleanup && brew prune'
 alias ke="emacsclient -e '(kill-emacs)'"
+alias magit="/usr/local/bin/emacs -nw --eval='(progn (magit-status) (delete-other-windows))'"
 alias pg="pg_ctl -D /usr/local/var/postgres start"
 
 # Don't mess with R
