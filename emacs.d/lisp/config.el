@@ -45,7 +45,8 @@
 
 ;; Basic language settings
 (setq js-indent-level 2)
-(setq css-indent-level 2)
+(setq css-indent-level 2
+      css-indent-offset 2)
 
 ;; eshell
 (add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode -1)))
