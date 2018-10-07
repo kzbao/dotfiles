@@ -27,7 +27,6 @@
       line-number-mode t)
 (setq require-final-newline t)
 (setq auto-hscroll-mode 'current-line)
-(global-visual-line-mode 1)
 (setq line-move-visual t)
 (setq scroll-margin 2
       scroll-preserve-screen-position 1)
