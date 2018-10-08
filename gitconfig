@@ -8,6 +8,8 @@
   autosetupmerge = always
 [fetch]
   prune = true
+[merge]
+  ff = only
 [pager]
   branch = false
 [pull]
