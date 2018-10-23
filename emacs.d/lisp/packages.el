@@ -76,8 +76,9 @@
 (use-package magit
   :bind
   (("C-x g" . magit-status)
-  ("C-c g b" . magit-log-buffer-file)
-  ("C-c g d" . magit-log-trace-definition)))
+   ("C-c g b" . magit-blame)
+   ("C-c g l" . magit-log-buffer-file)
+   ("C-c g d" . magit-log-trace-definition)))
 
 (use-package multiple-cursors
   :bind
