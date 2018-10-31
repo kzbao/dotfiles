@@ -29,14 +29,13 @@
   ce = commit --amend --no-edit
   cu = reset HEAD^ --soft
   d  = diff
+  dc = diff --cached
   dh = diff HEAD
+  dl = diff HEAD^ HEAD
   f  = fetch origin
   ff = pull
   h  = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
   k  = checkout --
-  kh = reset HEAD
-  kx = reset HEAD --hard
-  l  = diff HEAD^ HEAD
   ms = merge --squash
   pp = push
   pf = push -f
@@ -45,6 +44,8 @@
   rc = rebase --continue
   ri = rebase --interactive
   s  = status
+  u = reset --
+  xx = reset HEAD --hard
   z  = stash
   zp = stash pop
   ignore = update-index --assume-unchanged
