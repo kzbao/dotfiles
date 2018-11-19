@@ -9,3 +9,5 @@
       user-mail-address "kzbao93@gmail.com")
 
 (find-file "~/Dropbox/Main/personal.org")
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))

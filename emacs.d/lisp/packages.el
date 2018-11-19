@@ -13,9 +13,12 @@
 (use-package company
   :diminish company-mode
   :config
-  (setq company-idle-delay 0.3)
-  (setq company-minimum-prefix-length 2)
-  (global-company-mode t)
+  (setq company-idle-delay 0.5
+        company-show-numbers t
+        company-minimum-prefix-length 2
+        company-tooltip-align-annotations t
+        company-tooltip-flip-when-above t)
+  (global-company-mode 1)
   :bind
   ("C-c c" . company-mode))
 
@@ -50,8 +53,8 @@
 
 (use-package helm-swoop
   :config
-  (setq helm-multi-swoop-edit-save t)
-  (setq helm-swoop-use-line-number-face t)
+  (setq helm-multi-swoop-edit-save t
+        helm-swoop-use-line-number-face t)
   :bind
   (("M-i" . helm-swoop)
    ("M-I" . helm-swoop-back-to-last-point)
@@ -141,9 +144,9 @@
 
 (use-package projectile
   :config
-  (setq projectile-enable-caching t)
-  (setq projectile-completion-system 'helm)
-  (projectile-global-mode 1))
+  (setq projectile-enable-caching t
+        projectile-completion-system 'helm)
+  (projectile-mode 1))
 
 (use-package helm-projectile
   :config
