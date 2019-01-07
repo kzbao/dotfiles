@@ -20,8 +20,6 @@
 (setq disabled-command-function nil)
 
 ;; Text editing settings
-(add-to-list 'default-frame-alist
-             '(font . "Source Code Pro-12"))
 (setq-default indent-tabs-mode nil)
 (setq column-number-mode t
       line-number-mode t)

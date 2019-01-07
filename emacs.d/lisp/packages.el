@@ -1,19 +1,22 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://stable.melpa.org/packages/"))
+(package-initialize)
 
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
-(setq use-package-always-ensure t
-      use-package-verbose t)
 
 (use-package aggressive-indent
+  :ensure t
   :bind
   ("C-c a" . aggressive-indent-mode))
 
 (use-package company
+  :ensure t
+  :defer 2
   :diminish company-mode
   :config
-  (setq company-idle-delay 0.5
+  (setq company-idle-delay 1.0
         company-show-numbers t
         company-minimum-prefix-length 2
         company-tooltip-align-annotations t
@@ -22,7 +25,21 @@
   :bind
   ("C-c c" . company-mode))
 
+(use-package diminish
+  :ensure t)
+
+(setq custom-safe-themes t)
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-vibrant-brighter-modeline t
+        doom-vibrant-brighter-comments t)
+  (load-theme 'doom-vibrant t)
+  (doom-themes-org-config))
+
 (use-package helm
+  :ensure t
   :diminish helm-mode
   :init
   (require 'helm-config)
@@ -52,6 +69,7 @@
    ("C-w" . backward-kill-word)))
 
 (use-package helm-swoop
+  :ensure t
   :config
   (setq helm-multi-swoop-edit-save t
         helm-swoop-use-line-number-face t)
@@ -73,10 +91,13 @@
    ("C-w" . backward-kill-word)))
 
 (use-package key-chord
+  :ensure t
+  :defer 2
   :config
   (key-chord-mode 1))
 
 (use-package magit
+  :ensure t
   :bind
   (("C-x g" . magit-status)
    ("C-c g b" . magit-blame)
@@ -84,10 +105,12 @@
    ("C-c g d" . magit-log-trace-definition)))
 
 (use-package multiple-cursors
+  :ensure t
   :bind
   ("C-c m" . mc/edit-lines))
 
 (use-package neotree
+  :ensure t
   :config
   (setq neo-theme 'nerd)
   (add-hook 'neotree-mode-hook (lambda () (visual-line-mode -1)))
@@ -95,6 +118,7 @@
   ("C-c t" . neotree-toggle))
 
 (use-package powerline
+  :ensure t
   :config
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'slant)
@@ -143,36 +167,27 @@
                              (powerline-render rhs)))))))
 
 (use-package projectile
+  :ensure t
+  :diminish projectile-mode
   :config
   (setq projectile-enable-caching t
         projectile-completion-system 'helm)
   (projectile-mode 1))
 
 (use-package helm-projectile
+  :ensure t
   :config
+  (use-package helm-ag :ensure t)
   (helm-projectile-on)
   :bind
   (("C-c f" . helm-projectile-find-file)
    ("C-c s" . helm-projectile-ag)))
 
-(use-package rainbow-mode)
-
-(setq custom-safe-themes t)
-
-(use-package doom-themes
-  :config
-  (setq doom-vibrant-brighter-modeline t
-        doom-vibrant-brighter-comments t)
-  (load-theme 'doom-vibrant t)
-  (doom-themes-org-config))
-
-;; (use-package solarized-theme
-;;  :config
-;;  (setq solarized-use-variable-pitch nil
-;;        x-underline-at-descent-line t)
-;;  (load-theme 'solarized-dark t))
+(use-package rainbow-mode
+  :ensure t)
 
 (use-package undo-tree
+  :ensure t
   :diminish undo-tree-mode
   :config
   (setq undo-tree-visualizer-timestamps t
@@ -180,6 +195,7 @@
   (global-undo-tree-mode 1))
 
 (use-package web-mode
+  :ensure t
   :mode ("\\.html?\\'" . web-mode)
   :config
   (setq web-mode-markup-indent-offset 2
@@ -192,12 +208,17 @@
         web-mode-enable-auto-pairing t))
 
 (use-package which-key
+  :ensure t
+  :defer 2
+  :diminish which-key-mode
   :config
+  (setq which-key-idle-delay 1.0)
   (which-key-mode 1)
   :bind
   ("C-x w" . which-key-mode))
 
 (use-package yasnippet
+  :ensure t
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
