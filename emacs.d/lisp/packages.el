@@ -1,5 +1,5 @@
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -67,6 +67,15 @@
    ("C-i" . helm-execute-persistent-action)
    ("C-z" . helm-select-action)
    ("C-w" . backward-kill-word)))
+
+(use-package helm-ag
+  :ensure t)
+
+(use-package helm-projectile
+  :ensure t
+  :bind
+  (("C-c f" . helm-projectile-find-file)
+   ("C-c s" . helm-projectile-ag)))
 
 (use-package helm-swoop
   :ensure t
@@ -172,16 +181,8 @@
   :config
   (setq projectile-enable-caching t
         projectile-completion-system 'helm)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode 1))
-
-(use-package helm-projectile
-  :ensure t
-  :config
-  (use-package helm-ag :ensure t)
-  (helm-projectile-on)
-  :bind
-  (("C-c f" . helm-projectile-find-file)
-   ("C-c s" . helm-projectile-ag)))
 
 (use-package rainbow-mode
   :ensure t)
