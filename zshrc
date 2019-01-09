@@ -1,5 +1,6 @@
 # Aliases
-alias brewall='brew update && brew upgrade && brew cleanup && brew prune'
+alias brewall="brew update && brew upgrade && brew cleanup && brew prune"
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ke="emacsclient -e '(kill-emacs)'"
 alias magit="/usr/local/bin/emacs -nw --eval='(progn (magit-status) (delete-other-windows))'"
 
