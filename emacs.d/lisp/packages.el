@@ -51,8 +51,8 @@
         helm-ff-skip-boring-files t
         helm-echo-input-inheader-line t
         helm-ff-newfile-prompt-p nil)
-  (helm-mode 1)
   (helm-adaptive-mode 1)
+  (helm-mode 1)
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-m" . helm-M-x)
@@ -64,12 +64,15 @@
    ("o" . helm-occur)
    :map helm-map
    ("<tab>" . helm-execute-persistent-action)
-   ("C-i" . helm-execute-persistent-action)
-   ("C-z" . helm-select-action)
-   ("C-w" . backward-kill-word)))
+   ("M-x" . helm-select-action)))
 
 (use-package helm-ag
   :ensure t)
+
+(use-package helm-descbinds
+  :ensure t
+  :config
+  (helm-descbinds-mode 1))
 
 (use-package helm-projectile
   :ensure t
@@ -93,11 +96,9 @@
    ("M-i" . helm-multi-swoop-all-from-helm-swoop)
    ("C-r" . helm-previous-line)
    ("C-s" . helm-next-line)
-   ("C-w" . backward-kill-word)
    :map helm-multi-swoop-map
    ("C-r" . helm-previous-line)
-   ("C-s" . helm-next-line)
-   ("C-w" . backward-kill-word)))
+   ("C-s" . helm-next-line)))
 
 (use-package key-chord
   :ensure t

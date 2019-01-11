@@ -1,6 +1,4 @@
 (global-set-key (kbd "C-x e") 'eshell)
-(global-set-key (kbd "C-w") 'backward-kill-word)
-(global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-x C-e") 'eval-region)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "M-g") 'goto-line)
