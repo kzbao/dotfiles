@@ -20,15 +20,15 @@
 (setq disabled-command-function nil)
 
 ;; Text editing settings
-(setq-default indent-tabs-mode nil)
 (setq column-number-mode t
       line-number-mode t)
-(setq require-final-newline t)
 (setq auto-hscroll-mode 'current-line)
 (setq line-move-visual t)
-(setq scroll-margin 2
+(setq scroll-conservatively 1000
+      scroll-margin 2
       scroll-preserve-screen-position 1)
 (setq search-whitespace-regexp "[-_ \t\n]+")
+(setq require-final-newline t)
 (delete-selection-mode 1)
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
@@ -39,6 +39,8 @@
 (which-function-mode 1)
 (setq which-func-unknown "")
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 8)
 
 ;; Basic language settings
 (setq js-indent-level 2)

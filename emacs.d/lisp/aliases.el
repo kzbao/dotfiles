@@ -2,6 +2,8 @@
 (global-set-key (kbd "C-x C-e") 'eval-region)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "M-p") 'beginning-of-buffer)
+(global-set-key (kbd "M-n") 'end-of-buffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
 
 (defun beginning-of-line-or-indentation ()

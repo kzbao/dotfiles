@@ -2,9 +2,16 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+(setq load-prefer-newer t)
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(use-package ace-window
+  :ensure t
+  :config
+  (global-set-key [remap other-window] 'ace-window))
 
 (use-package aggressive-indent
   :ensure t
@@ -37,6 +44,11 @@
         doom-vibrant-brighter-comments t)
   (load-theme 'doom-vibrant t)
   (doom-themes-org-config))
+
+(use-package easy-kill
+  :ensure t
+  :config
+  (global-set-key [remap kill-ring-save] 'easy-kill))
 
 (use-package helm
   :ensure t
@@ -113,6 +125,12 @@
    ("C-c g b" . magit-blame)
    ("C-c g l" . magit-log-buffer-file)
    ("C-c g d" . magit-log-trace-definition)))
+
+(use-package move-text
+  :ensure t
+  :bind
+  (([(meta up)] . move-text-up)
+   ([(meta down)] . move-text-down)))
 
 (use-package multiple-cursors
   :ensure t
