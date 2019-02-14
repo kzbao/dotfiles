@@ -145,6 +145,11 @@
   :bind
   ("C-c t" . neotree-toggle))
 
+(use-package perspective
+  :ensure t
+  :config
+  (persp-mode))
+
 (use-package powerline
   :ensure t
   :config
