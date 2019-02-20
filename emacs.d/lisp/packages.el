@@ -23,7 +23,7 @@
   :defer 2
   :diminish company-mode
   :config
-  (setq company-idle-delay 1.0
+  (setq company-idle-delay 0.1
         company-show-numbers t
         company-minimum-prefix-length 2
         company-tooltip-align-annotations t
