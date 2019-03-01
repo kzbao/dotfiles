@@ -1,51 +1,56 @@
-;; UI cleanup
-(setq inhibit-splash-screen t)
+;;; config.el --- Various settings
+
+;; UI
 (setq initial-scratch-message nil)
+(setq inhibit-splash-screen t)
 (setq visible-bell t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; Program settings
-(setq select-enable-clipboard t)
-(setq make-backup-files nil)
+;; Application
 (setq auto-save-default nil)
+(setq disabled-command-function nil)
+(setq make-backup-files nil)
 (setq org-log-done t)
+(setq select-enable-clipboard t)
+(fset 'yes-or-no-p 'y-or-n-p)
 (global-auto-revert-mode 1)
 (recentf-mode 1)
 (winner-mode 1)
 (windmove-default-keybindings)
-(fset 'yes-or-no-p 'y-or-n-p)
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-(setq disabled-command-function nil)
 
-;; Text editing settings
+
+;; Text editing
+(setq auto-hscroll-mode 'current-line)
 (setq column-number-mode t
       line-number-mode t)
-(setq auto-hscroll-mode 'current-line)
 (setq line-move-visual t)
+(setq require-final-newline t)
 (setq scroll-conservatively 1000
       scroll-margin 2
       scroll-preserve-screen-position 1)
 (setq search-whitespace-regexp "[-_ \t\n]+")
-(setq require-final-newline t)
+(setq show-paren-delay 0)
+(setq which-func-unknown "")
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 8)
 (delete-selection-mode 1)
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
-(transient-mark-mode 1)
-(show-paren-mode 1)
-(setq show-paren-delay 0)
 (global-subword-mode 1)
+(show-paren-mode 1)
+(transient-mark-mode 1)
 (which-function-mode 1)
-(setq which-func-unknown "")
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 8)
 
-;; Basic language settings
-(setq js-indent-level 2)
+;; Language
 (setq css-indent-level 2
       css-indent-offset 2)
+(setq js-indent-level 2)
 
-;; eshell
+;; Hooks
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode -1)))
+;;; config.el ends here

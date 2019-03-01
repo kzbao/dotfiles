@@ -1,3 +1,10 @@
+;;; packages.el --- Package configuration
+;;;
+;;; Commentary:
+;;;   Packages are from bleeding edge MELPA.
+;;;   Configuration is written with use-package syntax.
+;;;
+;;; Code:
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -247,3 +254,4 @@
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
+;;; packages.el ends here

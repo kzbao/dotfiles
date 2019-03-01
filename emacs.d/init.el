@@ -1,3 +1,9 @@
+;;; init.el --- Where it all begins
+;;;
+;;; Commentary:
+;;;   This is Kevin Bao's init.el.
+;;;
+;;; Code:
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -11,3 +17,6 @@
 (find-file "~/Dropbox/Main/personal.org")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+(provide 'init)
+;;; init.el ends here

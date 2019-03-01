@@ -1,3 +1,5 @@
+;;; aliases.el --- Aliases
+
 (global-set-key (kbd "C-x e") 'eshell)
 (global-set-key (kbd "C-x C-e") 'eval-region)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
@@ -13,3 +15,4 @@
     (beginning-of-line)))
 (global-set-key [remap move-beginning-of-line]
                 'beginning-of-line-or-indentation)
+;;; aliases.el ends here
