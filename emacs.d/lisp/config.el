@@ -23,34 +23,28 @@
 
 ;; Text editing
 (setq auto-hscroll-mode 'current-line)
-(setq column-number-mode t
-      line-number-mode t)
+(setq column-number-mode t)
+(setq line-number-mode t)
 (setq line-move-visual t)
 (setq require-final-newline t)
-(setq scroll-conservatively 1000
-      scroll-margin 2
-      scroll-preserve-screen-position 1)
+(setq scroll-conservatively 1000)
+(setq scroll-margin 2)
+(setq scroll-preserve-screen-position 1)
 (setq search-whitespace-regexp "[-_ \t\n]+")
 (setq show-paren-delay 0)
 (setq which-func-unknown "")
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 8)
 (delete-selection-mode 1)
-(global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (global-subword-mode 1)
 (show-paren-mode 1)
 (transient-mark-mode 1)
 (which-function-mode 1)
 
-;; Language
-(setq css-indent-level 2
-      css-indent-offset 2)
-(setq js-indent-level 2)
-
 ;; Hooks
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode -1)))
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 ;;; config.el ends here
