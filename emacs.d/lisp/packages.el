@@ -27,15 +27,17 @@
 
 (use-package company
   :ensure t
-  :defer 2
   :diminish company-mode
+  :init
+  (global-company-mode)
   :config
-  (setq company-idle-delay 0.1
-        company-show-numbers t
-        company-minimum-prefix-length 2
-        company-tooltip-align-annotations t
-        company-tooltip-flip-when-above t)
-  (global-company-mode 1)
+  (setq company-echo-delay 0)
+  (setq company-idle-delay 0)
+  (setq company-show-numbers t)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-align-annotations t)
+  (setq company-tooltip-flip-when-above t)
+  (setq company-transformers '(company-sort-by-occurrence))
   :bind
   ("C-c c" . company-mode))
 
@@ -47,8 +49,8 @@
 (use-package doom-themes
   :ensure t
   :config
-  (setq doom-vibrant-brighter-modeline t
-        doom-vibrant-brighter-comments t)
+  (setq doom-vibrant-brighter-comments t)
+  (setq doom-vibrant-brighter-modeline t)
   (load-theme 'doom-vibrant t)
   (doom-themes-org-config))
 
@@ -65,11 +67,11 @@
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
   (global-unset-key (kbd "C-x c"))
   :config
-  (setq helm-split-window-in-side-p t
-        helm-ff-file-name-history-use-recentf t
-        helm-ff-skip-boring-files t
-        helm-echo-input-inheader-line t
-        helm-ff-newfile-prompt-p nil)
+  (setq helm-split-window-in-side-p t)
+  (setq helm-ff-file-name-history-use-recentf t)
+  (setq helm-ff-skip-boring-files t)
+  (setq helm-echo-input-inheader-line t)
+  (setq helm-ff-newfile-prompt-p nil)
   (helm-adaptive-mode 1)
   (helm-mode 1)
   :bind
@@ -102,8 +104,8 @@
 (use-package helm-swoop
   :ensure t
   :config
-  (setq helm-multi-swoop-edit-save t
-        helm-swoop-use-line-number-face t)
+  (setq helm-multi-swoop-edit-save t)
+  (setq helm-swoop-use-line-number-face t)
   :bind
   (("M-i" . helm-swoop)
    ("M-I" . helm-swoop-back-to-last-point)
@@ -121,8 +123,7 @@
 
 (use-package key-chord
   :ensure t
-  :defer 2
-  :config
+  :init
   (key-chord-mode 1))
 
 (use-package magit
@@ -230,22 +231,22 @@
   :ensure t
   :mode ("\\.html?\\'" . web-mode)
   :config
-  (setq web-mode-markup-indent-offset 2
-        web-mode-css-indent-offset 2
-        web-mode-code-indent-offset 2)
-  (setq web-mode-enable-current-element-highlight t
-        web-mode-enable-current-column-highlight t)
-  (setq web-mode-enable-auto-closing t
-        web-mode-enable-auto-opening t
-        web-mode-enable-auto-pairing t))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-enable-current-column-highlight t)
+  (setq web-mode-enable-auto-closing t)
+  (setq web-mode-enable-auto-opening t)
+  (setq web-mode-enable-auto-pairing t))
 
 (use-package which-key
   :ensure t
-  :defer 2
   :diminish which-key-mode
+  :init
+  (which-key-mode 1)
   :config
   (setq which-key-idle-delay 1.0)
-  (which-key-mode 1)
   :bind
   ("C-x w" . which-key-mode))
 
