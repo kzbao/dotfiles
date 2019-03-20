@@ -39,7 +39,6 @@
   ms = merge --squash
   pp = push
   pf = push -f
-  pu = push -u origin
   rb = rebase
   rc = rebase --continue
   ri = rebase --interactive
