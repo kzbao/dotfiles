@@ -12,7 +12,6 @@ export EDITOR="emacs -nw"
 
 # Oh-my-zsh
 export ZSH=~/.oh-my-zsh
-DISABLE_UPDATE_PROMPT=true
 ZSH_THEME="fishy"
 plugins=(emacs git osx postgres pyenv python ssh-agent)
 source $ZSH/oh-my-zsh.sh
