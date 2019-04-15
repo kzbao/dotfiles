@@ -19,7 +19,7 @@
 (recentf-mode 1)
 (winner-mode 1)
 (windmove-default-keybindings)
-
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12"))
 
 ;; Text editing
 (setq auto-hscroll-mode 'current-line)
