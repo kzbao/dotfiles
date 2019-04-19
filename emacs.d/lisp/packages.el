@@ -5,6 +5,7 @@
 ;;;   Configuration is written with use-package syntax.
 ;;;
 ;;; Code:
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -42,7 +43,10 @@
   :bind
   (("C-c c" . company-mode)
    :map company-active-map
-   ("<tab>" . company-complete-common-or-cycle)))
+   ("RET" . nil)
+   ("<return>" . nil)
+   ("<tab>" . company-complete-common-or-cycle)
+   ("C-SPC" . company-complete-selection)))
 
 (use-package diminish)
 
@@ -58,6 +62,7 @@
   (global-set-key [remap kill-ring-save] 'easy-kill))
 
 (use-package helm
+  :demand t
   :diminish helm-mode
   :init
   (require 'helm-config)
