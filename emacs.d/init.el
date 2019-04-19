@@ -4,12 +4,15 @@
 ;;;   This is Kevin Bao's init.el.
 ;;;
 ;;; Code:
-(package-initialize)
+(setq gc-cons-threshold (* 20 1024 1024))
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(setq lisp-dir (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'load-path lisp-dir)
+
 (load-library "config")
-(load-library "packages")
+(load-library "functions")
 (load-library "aliases")
+(load-library "packages")
 
 (setq user-full-name "Kevin Bao"
       user-mail-address "kzbao93@gmail.com")

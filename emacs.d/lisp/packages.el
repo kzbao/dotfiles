@@ -9,45 +9,44 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(setq load-prefer-newer t)
-
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
+(setq load-prefer-newer t)
+(setq use-package-always-ensure t)
+(setq use-package-verbose t)
+
 (use-package ace-window
-  :ensure t
   :config
   (global-set-key [remap other-window] 'ace-window))
 
 (use-package aggressive-indent
-  :ensure t
   :bind
   ("C-c a" . aggressive-indent-mode))
 
 (use-package company
-  :ensure t
   :diminish company-mode
   :init
   (global-company-mode)
   :config
   (setq company-echo-delay 0)
   (setq company-idle-delay 0)
+  (setq company-require-match nil)
+  (setq company-selection-wrap-around t)
   (setq company-show-numbers t)
   (setq company-minimum-prefix-length 2)
   (setq company-tooltip-align-annotations t)
   (setq company-tooltip-flip-when-above t)
   (setq company-transformers '(company-sort-by-occurrence))
   :bind
-  ("C-c c" . company-mode))
+  (("C-c c" . company-mode)
+   :map company-active-map
+   ("<tab>" . company-complete-common-or-cycle)))
 
-(use-package diminish
-  :ensure t)
-
-(setq custom-safe-themes t)
+(use-package diminish)
 
 (use-package doom-themes
-  :ensure t
   :config
   (setq doom-vibrant-brighter-comments t)
   (setq doom-vibrant-brighter-modeline t)
@@ -55,12 +54,10 @@
   (doom-themes-org-config))
 
 (use-package easy-kill
-  :ensure t
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill))
 
 (use-package helm
-  :ensure t
   :diminish helm-mode
   :init
   (require 'helm-config)
@@ -77,7 +74,7 @@
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-m" . helm-M-x)
-   ("C-x b" . helm-mini)
+   ("C-x b" . helm-buffers-list)
    ("C-x C-b" . helm-mini)
    ("C-x C-f" . helm-find-files)
    ("M-y" . helm-show-kill-ring)
@@ -88,46 +85,48 @@
    ("M-x" . helm-select-action)))
 
 (use-package helm-ag
-  :ensure t)
+  :after helm)
 
 (use-package helm-descbinds
-  :ensure t
+  :after helm
   :config
   (helm-descbinds-mode 1))
 
 (use-package helm-projectile
-  :ensure t
+  :after helm
   :bind
   (("C-c f" . helm-projectile-find-file)
-   ("C-c s" . helm-projectile-ag)))
+   ("C-c s a" . helm-projectile-ag)))
 
 (use-package helm-swoop
-  :ensure t
+  :after helm
   :config
   (setq helm-multi-swoop-edit-save t)
   (setq helm-swoop-use-line-number-face t)
   :bind
-  (("M-i" . helm-swoop)
-   ("M-I" . helm-swoop-back-to-last-point)
-   ("C-c M-i" . helm-multi-swoop)
-   ("C-x M-i" . helm-multi-swoop-all)
+  (("C-c s s" . helm-swoop)
+   ("C-c s S" . helm-multi-swoop-all)
+   ("C-c s C-s" . helm-multi-swoop)
    :map isearch-mode-map
-   ("M-i" . helm-swoop-from-isearch)
+   ("<tab>" . helm-swoop-from-isearch)
    :map helm-swoop-map
-   ("M-i" . helm-multi-swoop-all-from-helm-swoop)
    ("C-r" . helm-previous-line)
    ("C-s" . helm-next-line)
+   ("C-w" . helm-yank-text-at-point)
+   ("C-x" . helm-multi-swoop-all-from-helm-swoop)
    :map helm-multi-swoop-map
    ("C-r" . helm-previous-line)
    ("C-s" . helm-next-line)))
 
 (use-package key-chord
-  :ensure t
   :init
   (key-chord-mode 1))
 
 (use-package magit
-  :ensure t
+  :config
+  (set-default 'magit-push-always-verify nil)
+  (set-default 'magit-revert-buffers 'silent)
+  (set-default 'magit-no-confirm '(stage-all-changes unstage-all-changes))
   :bind
   (("C-x g" . magit-status)
    ("C-c g b" . magit-blame)
@@ -135,18 +134,15 @@
    ("C-c g d" . magit-log-trace-definition)))
 
 (use-package move-text
-  :ensure t
   :bind
   (([(meta up)] . move-text-up)
    ([(meta down)] . move-text-down)))
 
 (use-package multiple-cursors
-  :ensure t
   :bind
   ("C-c m" . mc/edit-lines))
 
 (use-package neotree
-  :ensure t
   :config
   (setq neo-theme 'nerd)
   (add-hook 'neotree-mode-hook (lambda () (visual-line-mode -1)))
@@ -154,12 +150,10 @@
   ("C-c t" . neotree-toggle))
 
 (use-package perspective
-  :ensure t
   :config
   (persp-mode))
 
 (use-package powerline
-  :ensure t
   :config
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'slant)
@@ -208,7 +202,6 @@
                              (powerline-render rhs)))))))
 
 (use-package projectile
-  :ensure t
   :diminish projectile-mode
   :config
   (setq projectile-enable-caching t
@@ -216,11 +209,9 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode 1))
 
-(use-package rainbow-mode
-  :ensure t)
+(use-package rainbow-mode)
 
 (use-package undo-tree
-  :ensure t
   :diminish undo-tree-mode
   :config
   (setq undo-tree-visualizer-timestamps t
@@ -228,7 +219,6 @@
   (global-undo-tree-mode 1))
 
 (use-package web-mode
-  :ensure t
   :mode ("\\.html?\\'" . web-mode)
   :config
   (setq web-mode-markup-indent-offset 2)
@@ -241,7 +231,6 @@
   (setq web-mode-enable-auto-pairing t))
 
 (use-package which-key
-  :ensure t
   :diminish which-key-mode
   :init
   (which-key-mode 1)
@@ -251,7 +240,6 @@
   ("C-x w" . which-key-mode))
 
 (use-package yasnippet
-  :ensure t
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
