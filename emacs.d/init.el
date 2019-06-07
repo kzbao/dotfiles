@@ -12,6 +12,7 @@
 (load-library "config")
 (load-library "functions")
 (load-library "aliases")
+(load-library "languages")
 (load-library "packages")
 
 (setq user-full-name "Kevin Bao"
