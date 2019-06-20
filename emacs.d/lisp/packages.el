@@ -164,8 +164,8 @@
   (setq powerline-default-separator 'slant)
   (defface powerline-set1 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
     "Blue with white text")
-  (defface powerline-set2 '((t (:background "#fcce7b" :foreground "#1c1f24" :inherit mode-line)))
-    "Yellow with black text")
+  (defface powerline-set2 '((t (:background "#9ca0a4" :foreground "#1c1f24" :inherit mode-line)))
+    "Grey with black text")
   (defface powerline-set3 '((t (:background "#1c1f24" :foreground "#7bc275" :inherit mode-line)))
     "Black with green text")
   (setq-default mode-line-format
