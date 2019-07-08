@@ -51,10 +51,11 @@
 (use-package diminish)
 
 (use-package doom-themes
-  :config
-  (setq doom-vibrant-brighter-comments t)
-  (setq doom-vibrant-brighter-modeline t)
+  :init
   (load-theme 'doom-vibrant t)
+  :config
+  (setq doom-vibrant-brighter-comments t
+        doom-vibrant-brighter-modeline t)
   (doom-themes-org-config))
 
 (use-package easy-kill
@@ -155,7 +156,7 @@
   ("C-c t" . neotree-toggle))
 
 (use-package perspective
-  :config
+  :init
   (persp-mode))
 
 (use-package powerline
@@ -208,20 +209,22 @@
 
 (use-package projectile
   :diminish projectile-mode
+  :init
+  (projectile-mode 1)
   :config
   (setq projectile-enable-caching t
         projectile-completion-system 'helm)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode 1))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package rainbow-mode)
 
 (use-package undo-tree
   :diminish undo-tree-mode
+  :init
+  (global-undo-tree-mode)
   :config
   (setq undo-tree-visualizer-timestamps t
-        undo-tree-visualizer-diff t)
-  (global-undo-tree-mode 1))
+        undo-tree-visualizer-diff t))
 
 (use-package web-mode
   :mode ("\\.html?\\'" . web-mode)
