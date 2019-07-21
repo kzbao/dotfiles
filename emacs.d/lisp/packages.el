@@ -77,6 +77,8 @@
   (setq helm-ff-newfile-prompt-p nil)
   (helm-adaptive-mode 1)
   (helm-mode 1)
+  :custom
+  (helm-ff-lynx-style-map t)
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-m" . helm-M-x)
