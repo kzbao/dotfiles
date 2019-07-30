@@ -32,7 +32,7 @@
   (global-company-mode)
   :config
   (setq company-echo-delay 0)
-  (setq company-idle-delay 0)
+  (setq company-idle-delay 0.5)
   (setq company-require-match nil)
   (setq company-selection-wrap-around t)
   (setq company-show-numbers t)
@@ -113,8 +113,8 @@
   (setq helm-swoop-use-line-number-face t)
   :bind
   (("C-c s s" . helm-swoop)
-   ("C-c s S" . helm-multi-swoop-all)
-   ("C-c s C-s" . helm-multi-swoop)
+   ("C-c s b" . helm-multi-swoop-all)
+   ("C-c s B" . helm-multi-swoop)
    :map isearch-mode-map
    ("<tab>" . helm-swoop-from-isearch)
    :map helm-swoop-map
