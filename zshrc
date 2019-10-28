@@ -12,7 +12,7 @@ export EDITOR="emacs -nw"
 
 # Oh-my-zsh
 export ZSH=~/.oh-my-zsh
-plugins=(emacs git osx postgres pyenv python ssh-agent)
+plugins=(emacs git nvm osx postgres pyenv python ssh-agent)
 source $ZSH/oh-my-zsh.sh
 autoload -U promptinit && promptinit
 prompt pure
