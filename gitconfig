@@ -28,6 +28,7 @@
   ca = commit --amend
   ce = commit --amend --no-edit
   cu = reset HEAD^ --soft
+  cx = reset HEAD^ --hard
   d  = diff
   dc = diff --cached
   dh = diff HEAD
