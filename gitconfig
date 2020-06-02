@@ -28,7 +28,6 @@
   ca = commit --amend
   ce = commit --amend --no-edit
   cu = reset HEAD^ --soft
-  cx = reset HEAD^ --hard
   d  = diff
   dc = diff --cached
   dh = diff HEAD
@@ -45,6 +44,7 @@
   ri = rebase --interactive
   s  = status
   u = reset --
+  xc = reset HEAD^ --hard
   xx = reset HEAD --hard
   z  = stash
   zp = stash pop
