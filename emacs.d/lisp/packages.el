@@ -163,8 +163,8 @@
 
 (use-package powerline
   :config
-  (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'slant)
+  (setq powerline-image-apple-rgb t)
   (defface powerline-set1 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
     "Blue with white text")
   (defface powerline-set2 '((t (:background "#9ca0a4" :foreground "#1c1f24" :inherit mode-line)))
