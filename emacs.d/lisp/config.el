@@ -24,7 +24,7 @@
 (winner-mode 1)
 (windmove-default-keybindings)
 
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12"))
+(add-to-list 'default-frame-alist '(font . "Hack-12"))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
