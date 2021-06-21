@@ -12,7 +12,7 @@ export EDITOR="emacs -nw"
 
 # Oh-my-zsh
 export ZSH=~/.oh-my-zsh
-plugins=(emacs git osx postgres pyenv python ssh-agent)
+plugins=(emacs git osx ssh-agent)
 source $ZSH/oh-my-zsh.sh
 autoload -U promptinit && promptinit
 prompt pure
@@ -35,6 +35,3 @@ setopt HIST_IGNORE_ALL_DUPS
 autoload -U compinit && compinit
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
-
-# Other things
-eval "$(nodenv init -)"
