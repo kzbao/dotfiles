@@ -9,4 +9,5 @@ done
 ln -s "$PWD/gitconfig" ~/.gitconfig
 ln -s "$PWD/gitignore" ~/.gitignore
 
+ln -s "$PWD/zprofile" ~/.zprofile
 ln -s "$PWD/zshrc" ~/.zshrc

@@ -16,7 +16,7 @@
 (load-library "packages")
 
 (setq user-full-name "Kevin Bao"
-      user-mail-address "kzbao93@gmail.com")
+      user-mail-address "kzb@kevinbao.com")
 
 (find-file "~/Dropbox/Main/personal.org")
 
