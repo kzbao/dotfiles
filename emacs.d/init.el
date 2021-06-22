@@ -14,11 +14,13 @@
 (load-library "aliases")
 (load-library "languages")
 (load-library "packages")
+(load-library "assurance")
 
 (setq user-full-name "Kevin Bao"
       user-mail-address "kzb@kevinbao.com")
 
 (find-file "~/Dropbox/Main/personal.org")
+(find-file "~/Dropbox/Main/assurance.org")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
