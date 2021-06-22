@@ -11,8 +11,10 @@
 (load-library "keybindings")
 (load-library "languages")
 (load-library "packages")
+(load-library "assurance")
 
 (find-file "~/Dropbox/Main/personal.org")
+(find-file "~/Dropbox/Main/assurance.org")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 

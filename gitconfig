@@ -1,6 +1,6 @@
 [user]
   name = Kevin Bao
-  email = kzb@kevinbao.com
+  email = kbao@assurance.com
 [core]
   editor = emacs -nw
   excludesfile = ~/.gitignore

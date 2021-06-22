@@ -6,6 +6,7 @@ eval "$(pyenv init --path)"
 # Oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 plugins=(ag docker docker-compose emacs encode64 git macos node nodenv npm postgres pyenv python rbenv ruby)
+export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Prompt
@@ -34,3 +35,9 @@ alias brewall="brew update && brew upgrade && brew cleanup"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ke="emacsclient -e '(kill-emacs)'"
 alias magit="/Applications/Emacs.app/Contents/MacOS/emacs-nw --eval='(progn (magit-status) (delete-other-windows))'"
+alias rmds="find . -name '.DS_Store' -type f -delete"
+
+# Assurance aliases
+alias ra="bundle install && rails db:migrate && rails s"
+alias rcprod="bundle install && bundle exec bake assurance::kharon:rails service='insurance-puma-prod'"
+alias rcinte="bundle install && bundle exec bake assurance::kharon:rails service='insurance-puma-inte'"
