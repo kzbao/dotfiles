@@ -29,7 +29,6 @@ zstyle ':completion:*:warnings' format 'No matches for: %d'
 
 # Other things
 eval "$(nodenv init -)"
-eval "$(pyenv init -)"
 
 # Aliases
 alias brewall="brew update && brew upgrade && brew cleanup"
