@@ -3,7 +3,7 @@ export PATH=/usr/local/bin:$HOME/bin:$PATH
 
 # Oh-my-zsh
 export ZSH=~/.oh-my-zsh
-plugins=(emacs git osx ssh-agent postgres rbenv)
+plugins=(emacs git macos ssh-agent postgres rbenv)
 source $ZSH/oh-my-zsh.sh
 autoload -U promptinit && promptinit
 prompt pure
