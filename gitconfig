@@ -27,6 +27,7 @@
   cc = commit
   ca = commit --amend
   ce = commit --amend --no-edit
+  cp = cherry-pick
   cu = reset HEAD^ --soft
   d  = diff
   dc = diff --cached
@@ -39,6 +40,7 @@
   ms = merge --squash
   pp = push
   pf = push -f
+  ra = rebase --abort
   rb = rebase
   rc = rebase --continue
   ri = rebase --interactive
