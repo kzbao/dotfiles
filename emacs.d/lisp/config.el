@@ -24,9 +24,13 @@
 (winner-mode 1)
 (windmove-default-keybindings)
 
+(add-to-list 'default-frame-alist '(width  . 120))
+(add-to-list 'default-frame-alist '(height . 50))
 (add-to-list 'default-frame-alist '(font . "Hack-12"))
+(add-to-list 'default-frame-alist '(alpha . (95 . 90)))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
+
 
 ;; Text editing
 (setq auto-hscroll-mode 'current-line)
