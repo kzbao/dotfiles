@@ -7,16 +7,16 @@
 ;;; Code:
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-(setq load-prefer-newer t)
-(setq use-package-always-ensure t)
-(setq use-package-verbose t)
+(setq load-prefer-newer t
+      use-package-always-ensure t
+      use-package-verbose t)
 
 (use-package ace-window
   :config
@@ -25,28 +25,6 @@
 (use-package aggressive-indent
   :bind
   ("C-c a" . aggressive-indent-mode))
-
-(use-package company
-  :diminish company-mode
-  :init
-  (global-company-mode)
-  :config
-  (setq company-echo-delay 0)
-  (setq company-idle-delay 0.5)
-  (setq company-require-match nil)
-  (setq company-selection-wrap-around t)
-  (setq company-show-numbers t)
-  (setq company-minimum-prefix-length 2)
-  (setq company-tooltip-align-annotations t)
-  (setq company-tooltip-flip-when-above t)
-  (setq company-transformers '(company-sort-by-occurrence))
-  :bind
-  (("C-c c" . company-mode)
-   :map company-active-map
-   ("RET" . nil)
-   ("<return>" . nil)
-   ("<tab>" . company-complete-common-or-cycle)
-   ("C-SPC" . company-complete-selection)))
 
 (use-package diminish)
 
@@ -70,11 +48,11 @@
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
   (global-unset-key (kbd "C-x c"))
   :config
-  (setq helm-split-window-in-side-p t)
-  (setq helm-ff-file-name-history-use-recentf t)
-  (setq helm-ff-skip-boring-files t)
-  (setq helm-echo-input-inheader-line t)
-  (setq helm-ff-newfile-prompt-p nil)
+  (setq helm-split-window-in-side-p t
+        helm-ff-file-name-history-use-recentf t
+        helm-ff-skip-boring-files t
+        helm-echo-input-inheader-line t
+        helm-ff-newfile-prompt-p nil)
   (helm-adaptive-mode 1)
   (helm-mode 1)
   :custom
@@ -109,8 +87,8 @@
 (use-package helm-swoop
   :after helm
   :config
-  (setq helm-multi-swoop-edit-save t)
-  (setq helm-swoop-use-line-number-face t)
+  (setq helm-multi-swoop-edit-save t
+        helm-swoop-use-line-number-face t)
   :bind
   (("C-c s s" . helm-swoop)
    ("C-c s b" . helm-multi-swoop-all)
@@ -129,6 +107,18 @@
 (use-package key-chord
   :init
   (key-chord-mode 1))
+
+(use-package lsp-mode
+  :commands lsp
+  :hook
+  (lsp-mode . lsp-enable-which-key-integration)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+
+(use-package helm-lsp
+  :commands helm-lsp-workspace-symbol)
 
 (use-package magit
   :config
@@ -153,7 +143,8 @@
 (use-package neotree
   :config
   (setq neo-theme 'nerd)
-  (add-hook 'neotree-mode-hook (lambda () (visual-line-mode -1)))
+  :hook
+  (neotree-mode . (lambda () (visual-line-mode -1)))
   :bind
   ("C-c t" . neotree-toggle))
 
@@ -163,8 +154,8 @@
 
 (use-package powerline
   :config
-  (setq powerline-default-separator 'slant)
-  (setq powerline-image-apple-rgb t)
+  (setq powerline-default-separator 'slant
+        powerline-image-apple-rgb t)
   (defface powerline-set1 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
     "Blue with white text")
   (defface powerline-set2 '((t (:background "#9ca0a4" :foreground "#1c1f24" :inherit mode-line)))
@@ -231,14 +222,14 @@
 (use-package web-mode
   :mode ("\\.html?\\'" . web-mode)
   :config
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-enable-current-element-highlight t)
-  (setq web-mode-enable-current-column-highlight t)
-  (setq web-mode-enable-auto-closing t)
-  (setq web-mode-enable-auto-opening t)
-  (setq web-mode-enable-auto-pairing t))
+  (setq web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-enable-current-element-highlight t
+        web-mode-enable-current-column-highlight t
+        web-mode-enable-auto-closing t
+        web-mode-enable-auto-opening t
+        web-mode-enable-auto-pairing t))
 
 (use-package which-key
   :diminish which-key-mode
