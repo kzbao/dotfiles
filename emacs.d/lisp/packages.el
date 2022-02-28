@@ -5,9 +5,11 @@
 ;;;   Configuration is written with use-package syntax.
 ;;;
 ;;; Code:
-
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(setq package-enable-at-startup nil)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -25,6 +27,28 @@
 (use-package aggressive-indent
   :bind
   ("C-c a" . aggressive-indent-mode))
+
+(use-package company
+  :diminish company-mode
+  :init
+  (global-company-mode)
+  :config
+  (setq company-echo-delay 0
+        company-idle-delay 0.5
+        company-require-match nil
+        company-selection-wrap-around t
+        company-show-numbers t
+        company-minimum-prefix-length 2
+        company-tooltip-align-annotations t
+        company-tooltip-flip-when-above t
+        company-transformers '(company-sort-by-occurrence))
+  :bind
+  (("C-c c" . company-mode)
+   :map company-active-map
+   ("RET" . nil)
+   ("<return" . nil)
+   ("<tab>" . company-complete-common-or-cycle)
+   ("C-SPC" . company-complete-selection)))
 
 (use-package diminish)
 
@@ -116,6 +140,12 @@
   (setq lsp-keymap-prefix "C-c l")
   :config
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+
+(use-package lsp-ui
+  :after lsp-mode
+  :config
+  (setq lsp-ui-sideline-enable t
+        lsp-ui-sideline-ignore-duplicate t))
 
 (use-package helm-lsp
   :commands helm-lsp-workspace-symbol)
@@ -220,7 +250,7 @@
         undo-tree-visualizer-diff t))
 
 (use-package web-mode
-  :mode ("\\.html?\\'" . web-mode)
+  :mode ("\\.html?\\'")
   :config
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2
@@ -239,6 +269,9 @@
   (setq which-key-idle-delay 1.0)
   :bind
   ("C-x w" . which-key-mode))
+
+(use-package yaml-mode
+  :mode "\\.yml\\'")
 
 (use-package yasnippet
   :diminish yas-minor-mode

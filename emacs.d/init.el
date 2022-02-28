@@ -10,8 +10,8 @@
 (add-to-list 'load-path lisp-dir)
 
 (load-library "config")
-(load-library "functions")
 (load-library "aliases")
+(load-library "functions")
 (load-library "languages")
 (load-library "packages")
 
