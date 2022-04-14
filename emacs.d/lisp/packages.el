@@ -135,20 +135,59 @@
 (use-package lsp-mode
   :commands lsp
   :hook
-  (lsp-mode . lsp-enable-which-key-integration)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
+  ((lsp-mode . lsp-enable-which-key-integration)
+   (ruby-mode . lsp))
   :config
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+  (setq read-process-output-max (* 1024 1024)
+        lsp-keymap-prefix "C-c l"
+        lsp-auto-configure t
+        lsp-auto-guess-root t
+        lsp-file-watch-threshold 500
+        lsp-enable-folding t
+        lsp-enable-imenu t
+        lsp-enable-indentation t
+        lsp-enable-links t
+        lsp-enable-symbol-highlighting t
+        lsp-idle-delay 0.5
+        lsp-imenu-show-container-name t
+        lsp-imenu-sort-methods '(position kind name))
+  (lsp-enable-imenu)
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  :bind
+  (:map lsp-mode-map
+        ("C-c C-d" . lsp-describe-thing-at-point)))
 
 (use-package lsp-ui
   :after lsp-mode
+  :commands lsp-ui-doc-hide
+  :init (setq lsp-ui-doc-enable t
+         lsp-ui-doc-use-webkit nil
+         lsp-ui-doc-header nil
+         lsp-ui-doc-delay 0.2
+         lsp-ui-doc-include-signature t
+         lsp-ui-doc-alignment 'at-point
+         lsp-ui-doc-use-childframe nil
+         lsp-ui-doc-border (face-foreground 'default)
+         lsp-ui-peek-enable t
+         lsp-ui-peek-show-directory t
+         lsp-ui-sideline-update-mode 'line
+         lsp-ui-sideline-enable t
+         lsp-ui-sideline-show-code-actions t
+         lsp-ui-sideline-show-hover nil
+         lsp-ui-sideline-ignore-duplicate t)
   :config
-  (setq lsp-ui-sideline-enable t
-        lsp-ui-sideline-ignore-duplicate t))
-
-(use-package helm-lsp
-  :commands helm-lsp-workspace-symbol)
+  (add-to-list 'lsp-ui-doc-frame-parameters '(right-fringe . 8))
+  (advice-add 'keyboard-quit :before 'lsp-ui-doc-hide)
+  (add-hook 'after-load-theme-hook
+         (lambda ()
+         (setq lsp-ui-doc-border (face-foreground 'default))
+         (set-face-background 'lsp-ui-doc-background
+                              (face-background 'tooltip))))
+  :bind
+  (:map lsp-ui-mode-map
+   ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+   ([remap xref-find-references] . lsp-ui-peek-find-references)
+   ("C-c u" . lsp-ui-imenu)))
 
 (use-package magit
   :config
@@ -184,8 +223,7 @@
 
 (use-package powerline
   :config
-  (setq powerline-default-separator 'slant
-        powerline-image-apple-rgb t)
+  (setq powerline-default-separator 'slant)
   (defface powerline-set1 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
     "Blue with white text")
   (defface powerline-set2 '((t (:background "#9ca0a4" :foreground "#1c1f24" :inherit mode-line)))
@@ -216,9 +254,7 @@
                                      (funcall separator-left face2 face3 height)
                                      (when (boundp 'erc-modified-channels-object)
                                        (powerline-raw erc-modified-channels-object face3 'l))
-                                     (powerline-major-mode face3 'l)
-                                     (powerline-process face3)
-                                     (powerline-minor-modes face3 'l)))
+                                     (powerline-major-mode face3 'l)))
                           (rhs (list (powerline-raw global-mode-string face3 'r)
                                      (powerline-vc face3 'r)
                                      (funcall separator-right face3 face1 height)
@@ -247,7 +283,8 @@
   (global-undo-tree-mode)
   :config
   (setq undo-tree-visualizer-timestamps t
-        undo-tree-visualizer-diff t))
+        undo-tree-visualizer-diff t
+        undo-tree-auto-save-history nil))
 
 (use-package web-mode
   :mode ("\\.html?\\'")

@@ -31,6 +31,8 @@
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
+(when (string= system-type "darwin")
+  (setq dired-use-ls-dired nil))
 
 ;; Text editing
 (setq auto-hscroll-mode 'current-line)
