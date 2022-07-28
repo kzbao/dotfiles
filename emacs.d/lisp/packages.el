@@ -133,13 +133,14 @@
   (key-chord-mode 1))
 
 (use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
   :commands lsp
   :hook
   ((lsp-mode . lsp-enable-which-key-integration)
    (ruby-mode . lsp))
   :config
   (setq read-process-output-max (* 1024 1024)
-        lsp-keymap-prefix "C-c l"
         lsp-auto-configure t
         lsp-auto-guess-root t
         lsp-file-watch-threshold 500
@@ -159,35 +160,7 @@
 
 (use-package lsp-ui
   :after lsp-mode
-  :commands lsp-ui-doc-hide
-  :init (setq lsp-ui-doc-enable t
-         lsp-ui-doc-use-webkit nil
-         lsp-ui-doc-header nil
-         lsp-ui-doc-delay 0.2
-         lsp-ui-doc-include-signature t
-         lsp-ui-doc-alignment 'at-point
-         lsp-ui-doc-use-childframe nil
-         lsp-ui-doc-border (face-foreground 'default)
-         lsp-ui-peek-enable t
-         lsp-ui-peek-show-directory t
-         lsp-ui-sideline-update-mode 'line
-         lsp-ui-sideline-enable t
-         lsp-ui-sideline-show-code-actions t
-         lsp-ui-sideline-show-hover nil
-         lsp-ui-sideline-ignore-duplicate t)
-  :config
-  (add-to-list 'lsp-ui-doc-frame-parameters '(right-fringe . 8))
-  (advice-add 'keyboard-quit :before 'lsp-ui-doc-hide)
-  (add-hook 'after-load-theme-hook
-         (lambda ()
-         (setq lsp-ui-doc-border (face-foreground 'default))
-         (set-face-background 'lsp-ui-doc-background
-                              (face-background 'tooltip))))
-  :bind
-  (:map lsp-ui-mode-map
-   ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-   ([remap xref-find-references] . lsp-ui-peek-find-references)
-   ("C-c u" . lsp-ui-imenu)))
+  :commands lsp-ui-mode)
 
 (use-package magit
   :config
