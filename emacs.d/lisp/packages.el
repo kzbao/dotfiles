@@ -132,36 +132,6 @@
   :init
   (key-chord-mode 1))
 
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :commands lsp
-  :hook
-  ((lsp-mode . lsp-enable-which-key-integration)
-   (ruby-mode . lsp))
-  :config
-  (setq read-process-output-max (* 1024 1024)
-        lsp-auto-configure t
-        lsp-auto-guess-root t
-        lsp-file-watch-threshold 500
-        lsp-enable-folding t
-        lsp-enable-imenu t
-        lsp-enable-indentation t
-        lsp-enable-links t
-        lsp-enable-symbol-highlighting t
-        lsp-idle-delay 0.5
-        lsp-imenu-show-container-name t
-        lsp-imenu-sort-methods '(position kind name))
-  (lsp-enable-imenu)
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
-  :bind
-  (:map lsp-mode-map
-        ("C-c C-d" . lsp-describe-thing-at-point)))
-
-(use-package lsp-ui
-  :after lsp-mode
-  :commands lsp-ui-mode)
-
 (use-package magit
   :config
   (set-default 'magit-push-always-verify nil)
