@@ -3,7 +3,7 @@ export PATH=/usr/local/bin:$HOME/bin:$PATH
 
 # Oh-my-zsh
 export ZSH=~/.oh-my-zsh
-plugins=(emacs git macos ssh-agent postgres rbenv)
+plugins=(emacs git macos nvm postgres pyenv rbenv ssh-agent)
 source $ZSH/oh-my-zsh.sh
 autoload -U promptinit && promptinit
 prompt pure
@@ -26,9 +26,6 @@ setopt HIST_IGNORE_ALL_DUPS
 autoload -U compinit && compinit
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
-
-# Other things
-eval "$(nodenv init -)"
 
 # Aliases
 alias brewall="brew update && brew upgrade && brew cleanup"
