@@ -1,7 +1,6 @@
 ;;; packages.el --- Package configuration
 ;;;
 ;;; Commentary:
-;;;   Packages are from bleeding edge MELPA.
 ;;;   Configuration is written with use-package syntax.
 ;;;
 ;;; Code:
@@ -45,8 +44,7 @@
   :bind
   (("C-c c" . company-mode)
    :map company-active-map
-   ("RET" . nil)
-   ("<return" . nil)
+   ("<return>" . nil)
    ("<tab>" . company-complete-common-or-cycle)
    ("C-SPC" . company-complete-selection)))
 
@@ -64,66 +62,65 @@
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill))
 
-(use-package helm
-  :demand t
-  :diminish helm-mode
-  :init
-  (require 'helm-config)
-  (global-set-key (kbd "C-c h") 'helm-command-prefix)
-  (global-unset-key (kbd "C-x c"))
-  :config
-  (setq helm-split-window-in-side-p t
-        helm-ff-file-name-history-use-recentf t
-        helm-ff-skip-boring-files t
-        helm-echo-input-inheader-line t
-        helm-ff-newfile-prompt-p nil)
-  (helm-adaptive-mode 1)
-  (helm-mode 1)
-  :custom
-  (helm-ff-lynx-style-map t)
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x C-m" . helm-M-x)
-   ("C-x b" . helm-buffers-list)
-   ("C-x C-b" . helm-mini)
-   ("C-x C-f" . helm-find-files)
-   ("M-y" . helm-show-kill-ring)
-   :map helm-command-map
-   ("o" . helm-occur)
-   :map helm-map
-   ("<tab>" . helm-execute-persistent-action)
-   ("M-x" . helm-select-action)))
+(use-package helm)
 
-(use-package helm-ag
-  :after helm)
+(use-package helm-adaptive
+  :config (helm-adaptive-mode 1))
+
+(use-package helm-ag)
+
+(use-package helm-apropos
+  :bind ("C-h a" . helm-apropos))
+
+(use-package helm-buffers
+  :config (setq helm-buffer-max-length nil)
+  :bind
+  (("C-x C-b" . helm-mini)
+   ("C-x b" . helm-buffers-list)))
+
+(use-package helm-command
+  :bind (("M-x" . helm-M-x)))
+
+(use-package helm-core
+  :bind
+  (:map helm-map
+        ("<tab>" . helm-execute-persistent-action)))
 
 (use-package helm-descbinds
-  :after helm
+  :config (helm-descbinds-mode 1))
+
+(use-package helm-files
   :config
-  (helm-descbinds-mode 1))
+  (setq helm-ff-file-name-history-use-recentf t
+        helm-ff-newfile-prompt-p nil
+        helm-ff-skip-boring-files t)
+  :bind (("C-x C-f" . helm-find-files)))
+
+(use-package helm-mode
+  :diminish helm-mode
+  :init (helm-mode 1))
+
+(use-package helm-occur
+  :bind
+  (:map helm-command-map
+        ("o" . helm-occur)))
 
 (use-package helm-projectile
-  :after helm
   :bind
-  (("C-c f" . helm-projectile-find-file)
-   ("C-c s a" . helm-projectile-ag)))
+  (("C-c C-f" . helm-projectile-find-file)
+   ("C-c C-s a" . helm-projectile-ag)))
+
+(use-package helm-ring
+  :bind (("M-y" . helm-show-kill-ring)))
 
 (use-package helm-swoop
-  :after helm
   :config
   (setq helm-multi-swoop-edit-save t
         helm-swoop-use-line-number-face t)
   :bind
-  (("C-c s s" . helm-swoop)
-   ("C-c s b" . helm-multi-swoop-all)
-   ("C-c s B" . helm-multi-swoop)
+  (("C-c C-s b" . helm-multi-swoop-all)
    :map isearch-mode-map
    ("<tab>" . helm-swoop-from-isearch)
-   :map helm-swoop-map
-   ("C-r" . helm-previous-line)
-   ("C-s" . helm-next-line)
-   ("C-w" . helm-yank-text-at-point)
-   ("C-x" . helm-multi-swoop-all-from-helm-swoop)
    :map helm-multi-swoop-map
    ("C-r" . helm-previous-line)
    ("C-s" . helm-next-line)))
@@ -162,7 +159,9 @@
 
 (use-package perspective
   :init
-  (persp-mode))
+  (persp-mode)
+  :custom
+  (persp-mode-prefix-key (kbd "C-x w")))
 
 (use-package powerline
   :config
@@ -246,9 +245,7 @@
   :init
   (which-key-mode 1)
   :config
-  (setq which-key-idle-delay 1.0)
-  :bind
-  ("C-x w" . which-key-mode))
+  (setq which-key-idle-delay 1.0))
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
