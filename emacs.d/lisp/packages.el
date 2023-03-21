@@ -20,17 +20,14 @@
       use-package-verbose t)
 
 (use-package ace-window
-  :config
-  (global-set-key [remap other-window] 'ace-window))
+  :config (global-set-key [remap other-window] 'ace-window))
 
 (use-package aggressive-indent
-  :bind
-  ("C-c a" . aggressive-indent-mode))
+  :bind ("C-c a" . aggressive-indent-mode))
 
 (use-package company
   :diminish company-mode
-  :init
-  (global-company-mode)
+  :init (global-company-mode)
   :config
   (setq company-echo-delay 0
         company-idle-delay 0.5
@@ -51,16 +48,14 @@
 (use-package diminish)
 
 (use-package doom-themes
-  :init
-  (load-theme 'doom-vibrant t)
+  :init (load-theme 'doom-vibrant t)
   :config
   (setq doom-vibrant-brighter-comments t
         doom-vibrant-brighter-modeline t)
   (doom-themes-org-config))
 
 (use-package easy-kill
-  :config
-  (global-set-key [remap kill-ring-save] 'easy-kill))
+  :config (global-set-key [remap kill-ring-save] 'easy-kill))
 
 (use-package helm)
 
@@ -79,7 +74,7 @@
    ("C-x b" . helm-buffers-list)))
 
 (use-package helm-command
-  :bind (("M-x" . helm-M-x)))
+  :bind ("M-x" . helm-M-x))
 
 (use-package helm-core
   :bind
@@ -94,7 +89,7 @@
   (setq helm-ff-file-name-history-use-recentf t
         helm-ff-newfile-prompt-p nil
         helm-ff-skip-boring-files t)
-  :bind (("C-x C-f" . helm-find-files)))
+  :bind ("C-x C-f" . helm-find-files))
 
 (use-package helm-mode
   :diminish helm-mode
@@ -111,7 +106,7 @@
    ("C-c C-s a" . helm-projectile-ag)))
 
 (use-package helm-ring
-  :bind (("M-y" . helm-show-kill-ring)))
+  :bind ("M-y" . helm-show-kill-ring))
 
 (use-package helm-swoop
   :config
@@ -126,8 +121,7 @@
    ("C-s" . helm-next-line)))
 
 (use-package key-chord
-  :init
-  (key-chord-mode 1))
+  :init (key-chord-mode 1))
 
 (use-package magit
   :config
@@ -146,22 +140,16 @@
    ([(meta down)] . move-text-down)))
 
 (use-package multiple-cursors
-  :bind
-  ("C-c m" . mc/edit-lines))
+  :bind ("C-c m" . mc/edit-lines))
 
 (use-package neotree
-  :config
-  (setq neo-theme 'nerd)
-  :hook
-  (neotree-mode . (lambda () (visual-line-mode -1)))
-  :bind
-  ("C-c t" . neotree-toggle))
+  :config (setq neo-theme 'nerd)
+  :hook (neotree-mode . (lambda () (visual-line-mode -1)))
+  :bind ("C-c t" . neotree-toggle))
 
 (use-package perspective
-  :init
-  (persp-mode)
-  :custom
-  (persp-mode-prefix-key (kbd "C-x w")))
+  :init (persp-mode)
+  :custom (persp-mode-prefix-key (kbd "C-x w")))
 
 (use-package powerline
   :config
@@ -210,8 +198,7 @@
 
 (use-package projectile
   :diminish projectile-mode
-  :init
-  (projectile-mode 1)
+  :init (projectile-mode 1)
   :config
   (setq projectile-enable-caching t
         projectile-completion-system 'helm)
@@ -221,8 +208,7 @@
 
 (use-package undo-tree
   :diminish undo-tree-mode
-  :init
-  (global-undo-tree-mode)
+  :init (global-undo-tree-mode)
   :config
   (setq undo-tree-visualizer-timestamps t
         undo-tree-visualizer-diff t
@@ -242,8 +228,7 @@
 
 (use-package which-key
   :diminish which-key-mode
-  :init
-  (which-key-mode 1)
+  :init (which-key-mode 1)
   :config
   (setq which-key-idle-delay 1.0))
 
@@ -252,6 +237,5 @@
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :config
-  (yas-global-mode 1))
+  :config (yas-global-mode 1))
 ;;; packages.el ends here
