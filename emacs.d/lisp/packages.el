@@ -91,6 +91,10 @@
         helm-ff-skip-boring-files t)
   :bind ("C-x C-f" . helm-find-files))
 
+(use-package helm-global-bindings
+  :custom
+  (helm-command-prefix-key "C-c h"))
+
 (use-package helm-mode
   :diminish helm-mode
   :init (helm-mode 1))
