@@ -4,8 +4,16 @@
 [core]
   editor = emacs -nw
   excludesfile = ~/.gitignore
+  pager = delta
 [branch]
   autosetupmerge = always
+[delta]
+  file-decoration-style = yellow box
+  hunk-header-decoration-style = yellow box
+  hunk-header-style = line-number syntax
+  keep-plus-minus-markers = false
+  navigate = true
+  side-by-side = true
 [fetch]
   prune = true
 [merge]
