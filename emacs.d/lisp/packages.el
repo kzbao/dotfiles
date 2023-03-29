@@ -77,6 +77,7 @@
   :bind ("M-x" . helm-M-x))
 
 (use-package helm-core
+  :config (setq helm-split-window-inside-p t)
   :bind
   (:map helm-map
         ("<tab>" . helm-execute-persistent-action)))
@@ -106,8 +107,8 @@
 
 (use-package helm-projectile
   :bind
-  (("C-c C-f" . helm-projectile-find-file)
-   ("C-c C-s a" . helm-projectile-ag)))
+  (("C-c f" . helm-projectile-find-file)
+   ("C-c s a" . helm-projectile-ag)))
 
 (use-package helm-ring
   :bind ("M-y" . helm-show-kill-ring))
@@ -117,7 +118,7 @@
   (setq helm-multi-swoop-edit-save t
         helm-swoop-use-line-number-face t)
   :bind
-  (("C-c C-s b" . helm-multi-swoop-all)
+  (("C-c s b" . helm-multi-swoop-all)
    :map isearch-mode-map
    ("<tab>" . helm-swoop-from-isearch)
    :map helm-multi-swoop-map
