@@ -48,11 +48,11 @@
 (use-package diminish)
 
 (use-package doom-themes
-  :init (load-theme 'doom-vibrant t)
   :config
   (setq doom-vibrant-brighter-comments t
         doom-vibrant-brighter-modeline t)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+  (load-theme 'doom-vibrant t))
 
 (use-package easy-kill
   :config (global-set-key [remap kill-ring-save] 'easy-kill))
@@ -133,6 +133,8 @@
   (set-default 'magit-push-always-verify nil)
   (set-default 'magit-revert-buffers 'silent)
   (set-default 'magit-no-confirm '(stage-all-changes unstage-all-changes))
+  (setq magit-commit-show-diff nil
+        magit-revert-buffers 1)
   :bind
   (("C-x g" . magit-status)
    ("C-c g b" . magit-blame)

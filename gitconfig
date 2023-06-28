@@ -8,10 +8,8 @@
 [branch]
   autosetupmerge = always
 [delta]
-  file-decoration-style = yellow box
+  file-decoration-style = red ul
   hunk-header-decoration-style = yellow box
-  hunk-header-style = line-number syntax
-  keep-plus-minus-markers = false
   navigate = true
   side-by-side = true
 [fetch]
