@@ -9,7 +9,6 @@
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")))
-(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -212,6 +211,8 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package rainbow-mode)
+
+(use-package typescript-mode)
 
 (use-package undo-tree
   :diminish undo-tree-mode
