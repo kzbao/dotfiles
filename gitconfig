@@ -27,8 +27,8 @@
 [alias]
   a  = add
   b  = branch
-  bb = checkout
-  bc = checkout -b
+  bb = switch
+  bc = switch -c
   bk = branch -D
   cc = commit
   ca = commit --amend
