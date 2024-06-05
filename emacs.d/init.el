@@ -7,12 +7,12 @@
 (add-to-list 'load-path lisp-dir)
 
 (load-library "config")
-(load-library "aliases")
 (load-library "functions")
+(load-library "keybindings")
 (load-library "languages")
 (load-library "packages")
 
-;(find-file "~/Dropbox/Main/personal.org")
+(find-file "~/Dropbox/Main/personal.org")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 

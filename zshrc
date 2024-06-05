@@ -4,7 +4,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
 # Oh-my-zsh
-export ZSH=~/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 plugins=(ag docker docker-compose emacs encode64 git macos node nodenv npm postgres pyenv python rbenv ruby)
 source $ZSH/oh-my-zsh.sh
 
@@ -15,17 +15,14 @@ prompt pure
 
 # Options
 bindkey -e
-setopt AUTO_CD
-setopt AUTO_PARAM_SLASH
-HYPHEN_INSENSITIVE="true"
+setopt AUTO_CD AUTO_PARAM_SLASH
+HYPHEN_INSENSITIVE=true
 
 # History
-HISTFILE=~/.zsh_history
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
+setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_ALL_DUPS
 
 # Autocompletion
 autoload -U compinit && compinit
