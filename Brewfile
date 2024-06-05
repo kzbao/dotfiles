@@ -1,6 +1,4 @@
 brew "awscli"
-brew "docker"
-brew "docker-compose"
 brew "git"
 brew "git-delta"
 brew "htop"
