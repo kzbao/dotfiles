@@ -33,5 +33,4 @@ zstyle ':completion:*:warnings' format 'No matches for: %d'
 alias brewall="brew update && brew upgrade && brew cleanup"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ke="emacsclient -e '(kill-emacs)'"
-alias magit="/usr/local/bin/emacs -nw --eval='(progn (magit-status) (delete-other-windows))'"
-alias rmds="find . -name '.DS_Store' -type f -delete"
+alias magit="/Applications/Emacs.app/Contents/MacOS/emacs-nw --eval='(progn (magit-status) (delete-other-windows))'"
