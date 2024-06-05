@@ -1,48 +1,29 @@
-;;; packages.el --- Package configuration
+;;; Package configuration
 ;;;
-;;; Commentary:
-;;;   Configuration is written with use-package syntax.
-;;;
-;;; Code:
+;;; Configuration is written with use-package syntax.
+
 (require 'package)
 (setq package-enable-at-startup nil)
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-(setq load-prefer-newer t
-      use-package-always-ensure t
-      use-package-verbose t)
+(require 'use-package)
+
+;; Use package config
+(setq use-package-always-ensure t)
+(setq use-package-always-defer nil)
+(setq use-package-verbose t)
+(setq use-package-compute-statistics t)
 
 (use-package ace-window
   :config (global-set-key [remap other-window] 'ace-window))
 
 (use-package aggressive-indent
   :bind ("C-c a" . aggressive-indent-mode))
-
-(use-package company
-  :diminish company-mode
-  :init (global-company-mode)
-  :config
-  (setq company-echo-delay 0
-        company-idle-delay 0.5
-        company-require-match nil
-        company-selection-wrap-around t
-        company-show-numbers t
-        company-minimum-prefix-length 2
-        company-tooltip-align-annotations t
-        company-tooltip-flip-when-above t
-        company-transformers '(company-sort-by-occurrence))
-  :bind
-  (("C-c c" . company-mode)
-   :map company-active-map
-   ("<return>" . nil)
-   ("<tab>" . company-complete-common-or-cycle)
-   ("C-SPC" . company-complete-selection)))
 
 (use-package diminish)
 
@@ -124,9 +105,6 @@
    ("C-r" . helm-previous-line)
    ("C-s" . helm-next-line)))
 
-(use-package key-chord
-  :init (key-chord-mode 1))
-
 (use-package magit
   :config
   (set-default 'magit-push-always-verify nil)
@@ -152,10 +130,6 @@
   :config (setq neo-theme 'nerd)
   :hook (neotree-mode . (lambda () (visual-line-mode -1)))
   :bind ("C-c t" . neotree-toggle))
-
-(use-package perspective
-  :init (persp-mode)
-  :custom (persp-mode-prefix-key (kbd "C-x w")))
 
 (use-package powerline
   :config
@@ -234,16 +208,11 @@
         web-mode-enable-auto-opening t
         web-mode-enable-auto-pairing t))
 
-(use-package which-key
-  :diminish which-key-mode
-  :init (which-key-mode 1)
-  :config
-  (setq which-key-idle-delay 1.0))
-
 (use-package yaml-mode
   :mode "\\.yml\\'")
 
 (use-package yasnippet
   :diminish yas-minor-mode
   :config (yas-global-mode 1))
-;;; packages.el ends here
+
+(provide 'packages)

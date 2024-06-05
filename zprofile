@@ -1,3 +1,2 @@
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# Environment Variables
+export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH

@@ -1,4 +1,4 @@
-;;; functions.el --- Functions
+;;; Functions
 
 (defun beginning-of-line-or-indentation ()
   (interactive)
@@ -7,4 +7,3 @@
     (beginning-of-line)))
 
 (provide 'functions)
-;;; functions.el ends here

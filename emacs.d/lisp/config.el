@@ -1,4 +1,4 @@
-;;; config.el --- Various settings
+;;; Various settings
 
 ;; Remove unnecessary UI components
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -6,6 +6,13 @@
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Application settings
+(add-to-list 'default-frame-alist '(width  . 120))
+(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(font . "Hack-12"))
+(add-to-list 'default-frame-alist '(alpha . (95 . 90)))
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+
 (setq auto-save-default nil)
 (setq custom-safe-themes t)
 (setq dired-recursive-copies 'always)
@@ -17,6 +24,7 @@
 (setq make-backup-files nil)
 (setq select-enable-clipboard t)
 (setq visible-bell t)
+(setq gc-cons-threshold (* 20 1024 1024))
 
 (when (string= system-type "darwin")
   (setq dired-use-ls-dired nil))
@@ -26,13 +34,6 @@
 (recentf-mode 1)
 (winner-mode 1)
 (windmove-default-keybindings)
-
-(add-to-list 'default-frame-alist '(width  . 120))
-(add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(font . "Hack-12"))
-(add-to-list 'default-frame-alist '(alpha . (95 . 90)))
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark))
 
 ;; Text editing
 (setq auto-hscroll-mode 'current-line)
@@ -64,4 +65,3 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (provide 'config)
-;;; config.el ends here

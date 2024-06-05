@@ -1,6 +1,3 @@
-# Environment Variables
-export PATH=/usr/local/bin:$HOME/bin:$PATH
-
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -10,6 +7,9 @@ eval "$(pyenv init --path)"
 export ZSH=~/.oh-my-zsh
 plugins=(ag docker docker-compose emacs encode64 git macos node nodenv npm postgres pyenv python rbenv ruby)
 source $ZSH/oh-my-zsh.sh
+
+# Prompt
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit && promptinit
 prompt pure
 

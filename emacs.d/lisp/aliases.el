@@ -1,4 +1,4 @@
-;;; aliases.el --- aliases
+;;; Aliases
 
 (require 'functions)
 
@@ -15,4 +15,3 @@
 (global-set-key [remap move-beginning-of-line] 'beginning-of-line-or-indentation)
 
 (provide 'aliases)
-;;; aliases.el ends here
