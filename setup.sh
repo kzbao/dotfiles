@@ -12,7 +12,7 @@ cat <<EOF > ~/.ssh/config
 Host github.com
   AddKeysToAgent yes
   UseKeychain yes
-  IdentityFile ~/.ssh/id_ed25519"
+  IdentityFile ~/.ssh/id_ed25519
 EOF
 eval "$(ssh-agent -s)"
 echo "Please copy ~/.ssh/id_ed25519.pub to Github. Press any key to continue..."
@@ -25,7 +25,7 @@ rm ~/.zshrc
 echo "=== Retrieve dotfiles ==="
 mkdir -p ~/Development
 cd ~/Development
-git clone git@github.com:kzbao/dotfiles.git
+/opt/homebrew/bin/git clone git@github.com:kzbao/dotfiles.git
 cd dotfiles
 mkdir -p ~/.emacs.d/lisp
 ln -s "$PWD/emacs.d/init.el" ~/.emacs.d/init.el
