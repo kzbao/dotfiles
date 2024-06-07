@@ -11,7 +11,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 ;; Use package config
 (setq use-package-always-ensure t
@@ -38,33 +39,36 @@
   :bind ([remap kill-ring-save] . easy-kill))
 
 (use-package helm
-  :config
-  (setq helm-split-window-inside-p t)
+  :init
+  (setq helm-split-window-inside-p t
+        helm-buffer-max-length nil
+        helm-ff-file-name-history-use-recentf t
+        helm-ff-newfile-prompt-p nil
+        helm-ff-skip-boring-files t
+        helm-command-prefix-key "C-c h")
+  (helm-mode 1)
+  (helm-adaptive-mode 1)
+  (helm-descbinds-mode 1)
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-b" . helm-mini)
    ("C-x b" . helm-buffers-list)
    ("C-h a" . helm-apropos)
    ("C-x C-f" . helm-find-files)
-   ("C-c f" . helm-projectile-find-file)
-   ("C-c s a" . helm-projectile-ag)
    ("M-y" . helm-show-kill-ring)
    (:map helm-command-map
          ("o" . helm-occur))
    (:map isearch-mode-map
          ("<tab>" . helm-swoop-from-isearch))
    (:map helm-map
-         ("<tab>" . helm-execute-persistent-action)))
+         ("<tab>" . helm-execute-persistent-action))))
+
+(use-package helm-projectile
   :init
-  (helm-mode 1)
-  (helm-adaptive-mode 1)
-  (helm-descbinds-mode 1)
-  (setq helm-buffer-max-length nil
-        helm-ff-file-name-history-use-recentf t
-        helm-ff-newfile-prompt-p nil
-        helm-ff-skip-boring-files t)
-  :custom
-  (helm-command-prefix-key "C-c h"))
+  (helm-projectile-on)
+  :bind
+  (("C-c f" . helm-projectile-find-file)
+   ("C-c s a" . helm-projectile-ag)))
 
 (use-package helm-swoop
   :after helm

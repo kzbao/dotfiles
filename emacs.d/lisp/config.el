@@ -26,7 +26,8 @@
       make-backup-files nil
       select-enable-clipboard t
       visible-bell t
-      gc-cons-threshold (* 20 1024 1024))
+      gc-cons-threshold (* 20 1024 1024)
+      vc-follow-symlinks t)
 
 (when (eq system-type 'darwin)
   (setq dired-use-ls-dired nil))
