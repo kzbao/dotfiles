@@ -155,10 +155,11 @@
 
 (use-package projectile
   :diminish projectile-mode
-  :init (projectile-mode 1)
-  :config
+  :init
+  (projectile-mode 1)
   (setq projectile-enable-caching t
         projectile-completion-system 'helm)
+  :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package rainbow-mode)
@@ -167,11 +168,12 @@
 
 (use-package undo-tree
   :diminish undo-tree-mode
-  :init (global-undo-tree-mode)
+  :init
+  (setq undo-tree-auto-save-history nil)
   :config
+  (global-undo-tree-mode)
   (setq undo-tree-visualizer-timestamps t
-        undo-tree-visualizer-diff t
-        undo-tree-auto-save-history nil))
+        undo-tree-visualizer-diff t))
 
 (use-package web-mode
   :mode "\\.html?\\'"
@@ -190,6 +192,17 @@
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :config (yas-global-mode 1))
+  :config
+  (yas-global-mode 1)
+  :bind
+  (("C-c y e" . yas-expand)
+   ("C-c y n" . yas-new-snippet)
+   ("C-c y v" . yas-visit-snippet-file)
+   ("C-c y r" . yas-reload-all)
+   ("C-c y i" . yas-insert-snippet)
+   ("C-c y l" . yas-describe-tables)))
+
+(use-package yasnippet-snippets
+  :after yasnippet)
 
 (provide 'packages)
