@@ -1,0 +1,36 @@
+# -*- mode: snippet -*-
+# name: Solo piano template
+# key: solo_piano_template
+# --
+\version "2.24.3"
+
+\header {
+  title = "{ Title }"
+  composer = "{ Composer }"
+  arranger = "Kevin Bao"
+}
+
+upper = \relative c' {
+  \clef treble
+  \key c \major
+  \time 4/4
+
+  c4 d e f
+}
+
+lower = \relative c {
+  \clef bass
+  \key c \major
+  \time 4/4
+
+  c2 e
+}
+
+\score {
+  \new PianoStaff
+  <<
+    \new Staff = "upper" \upper
+    \new Staff = "lower" \lower
+  >>
+  \layout { }
+}
