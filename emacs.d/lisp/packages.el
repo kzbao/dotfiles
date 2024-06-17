@@ -108,6 +108,17 @@
   :hook (neotree-mode . (lambda () (visual-line-mode -1)))
   :bind ("C-c t" . neotree-toggle))
 
+(use-package org
+  :config
+  (setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (java . t)
+     (js . t)
+     (python . t)
+     (ruby . t))))
+
 (use-package powerline
   :config
   (setq powerline-default-separator 'slant)
