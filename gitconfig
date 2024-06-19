@@ -36,13 +36,13 @@
   cp = cherry-pick
   cu = reset HEAD^ --soft
   d  = diff
-  dc = diff --cached
-  dh = diff HEAD
+  ds = diff --cached
+  da = diff HEAD
   dl = diff HEAD^ HEAD
   f  = fetch origin
   ff = pull
   h  = log --pretty=format:\"%Cgreen%ad %Cred%h %Creset| %s %Cblue%an\" --date=short
-  k  = checkout --
+  k  = restore
   ms = merge --squash
   pp = push
   pf = push -f
@@ -51,7 +51,8 @@
   rc = rebase --continue
   ri = rebase --interactive
   s  = status
-  u = reset --
+  u  = restore --staged
+  x  = reset
   xc = reset HEAD^ --hard
   xx = reset HEAD --hard
   z  = stash

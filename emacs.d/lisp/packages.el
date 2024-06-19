@@ -48,7 +48,6 @@
         helm-command-prefix-key "C-c h")
   (helm-mode 1)
   (helm-adaptive-mode 1)
-  (helm-descbinds-mode 1)
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-b" . helm-mini)
@@ -110,7 +109,8 @@
 
 (use-package org
   :config
-  (setq org-confirm-babel-evaluate nil)
+  (setq org-confirm-babel-evaluate nil
+        org-src-preserve-indentation t)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((C . t)
@@ -197,6 +197,10 @@
         web-mode-enable-auto-closing t
         web-mode-enable-auto-opening t
         web-mode-enable-auto-pairing t))
+
+(use-package which-key
+  :config
+  (which-key-mode))
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
