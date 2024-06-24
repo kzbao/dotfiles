@@ -68,7 +68,7 @@ function ic() {
   local input_file=$1
   local output_file="${input_file%.*}.avif"
 
-  magick "$input_file" -resize "$max_dimension"x"$max_dimension"\> -quality "$quality" "$output_file"
+  magick "$input_file" -resize "$max_dimension"x"$max_dimension"\> -quality "$quality" -strip "$output_file"
 
   echo "Converted $input_file to $output_file"
 }

@@ -8,7 +8,6 @@
                      ("C-c k" . kmacro-keymap)
                      ("C-c l" . package-list-packages)
                      ("C-;" . comment-or-uncomment-region)
-                     ("M-g" . goto-line)
                      ("M-p" . beginning-of-buffer)
                      ("M-n" . end-of-buffer)
                      ("M-/" . hippie-expand))))

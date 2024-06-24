@@ -20,6 +20,39 @@
       use-package-verbose t
       use-package-compute-statistics t)
 
+(use-package consult
+  :bind
+  ("C-x b" . consult-buffer)
+  ("C-x p b" . consult-project-buffer)
+  ("M-y" . consult-yank-pop)
+  ("M-g g" . consult-goto-line)
+  ("M-g o" . consult-outline)
+  ("M-g i" . consult-imenu)
+  ("M-s d" . consult-find)
+  ("M-s g" . consult-grep)
+  ("M-s r" . consult-ripgrep)
+  ("M-s l" . consult-line)
+  ("M-s L" . consult-line-multi)
+  ("M-s e" . consult-isearch-history)
+  )
+
+(use-package embark
+  :bind
+  (("C-." . embark-act)
+   ("C-;" . embark-dwim)
+   ("C-h B" . embark-bindings))
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 (use-package ace-window
   :bind ([remap other-window] . ace-window))
 
@@ -37,48 +70,6 @@
 
 (use-package easy-kill
   :bind ([remap kill-ring-save] . easy-kill))
-
-(use-package helm
-  :init
-  (setq helm-split-window-inside-p t
-        helm-buffer-max-length nil
-        helm-ff-file-name-history-use-recentf t
-        helm-ff-newfile-prompt-p nil
-        helm-ff-skip-boring-files t
-        helm-command-prefix-key "C-c h")
-  (helm-mode 1)
-  (helm-adaptive-mode 1)
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x C-b" . helm-mini)
-   ("C-x b" . helm-buffers-list)
-   ("C-h a" . helm-apropos)
-   ("C-x C-f" . helm-find-files)
-   ("M-y" . helm-show-kill-ring)
-   (:map helm-command-map
-         ("o" . helm-occur))
-   (:map isearch-mode-map
-         ("<tab>" . helm-swoop-from-isearch))
-   (:map helm-map
-         ("<tab>" . helm-execute-persistent-action))))
-
-(use-package helm-projectile
-  :init
-  (helm-projectile-on)
-  :bind
-  (("C-c f" . helm-projectile-find-file)
-   ("C-c s a" . helm-projectile-ag)))
-
-(use-package helm-swoop
-  :after helm
-  :config
-  (setq helm-multi-swoop-edit-save t
-        helm-swoop-use-line-number-face t)
-  :bind
-  (("C-c s b" . helm-multi-swoop-all)
-   (:map helm-multi-swoop-map
-         ("C-r" . helm-previous-line)
-         ("C-s" . helm-next-line))))
 
 (use-package magit
   :config
@@ -164,15 +155,6 @@
                              (powerline-fill face3 (powerline-width rhs))
                              (powerline-render rhs)))))))
 
-(use-package projectile
-  :diminish projectile-mode
-  :init
-  (projectile-mode 1)
-  (setq projectile-enable-caching t
-        projectile-completion-system 'helm)
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-
 (use-package rainbow-mode)
 
 (use-package typescript-mode)
@@ -219,5 +201,30 @@
 
 (use-package yasnippet-snippets
   :after yasnippet)
+
+(use-package vertico
+  :init
+  (vertico-mode)
+  :custom
+  (vertico-resize t))
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode)
+  :custom
+  (marginalia-max-relative-age 0)
+  (marginalia-align 'right))
 
 (provide 'packages)
