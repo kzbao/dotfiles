@@ -20,21 +20,46 @@
       use-package-verbose t
       use-package-compute-statistics t)
 
+(use-package ace-window
+  :bind ([remap other-window] . ace-window))
+
+(use-package aggressive-indent
+  :bind ("C-c a" . aggressive-indent-mode))
+
 (use-package consult
   :bind
-  ("C-x b" . consult-buffer)
-  ("C-x p b" . consult-project-buffer)
-  ("M-y" . consult-yank-pop)
-  ("M-g g" . consult-goto-line)
-  ("M-g o" . consult-outline)
-  ("M-g i" . consult-imenu)
-  ("M-s d" . consult-find)
-  ("M-s g" . consult-grep)
-  ("M-s r" . consult-ripgrep)
-  ("M-s l" . consult-line)
-  ("M-s L" . consult-line-multi)
-  ("M-s e" . consult-isearch-history)
-  )
+  (("C-x b" . consult-buffer)
+   ("C-x p b" . consult-project-buffer)
+   ("C-x 4 b" . consult-buffer-other-window)
+   ("C-x r b" . consult-bookmark)
+   ("M-y" . consult-yank-pop)
+   ("M-g g" . consult-goto-line)
+   ("M-g o" . consult-outline)
+   ("M-g i" . consult-imenu)
+   ("M-s d" . consult-find)
+   ("M-s a" . consult-ripgrep)
+   ("M-s s" . consult-line)
+   ("M-s b" . consult-line-multi)
+   ("M-s e" . consult-isearch-history)
+   :map isearch-mode-map
+   ("M-s e" . consult-isearch-history)
+   ("M-s s" . consult-line)
+   ("M-s l" . consult-line-multi)
+   :map minibuffer-local-map
+   ("M-s" . consult-history)
+   ("M-r" . consult-history)))
+
+(use-package diminish)
+
+(use-package doom-themes
+  :config
+  (setq doom-vibrant-brighter-comments t
+        doom-vibrant-brighter-modeline t)
+  (doom-themes-org-config)
+  (load-theme 'doom-vibrant t))
+
+(use-package easy-kill
+  :bind ([remap kill-ring-save] . easy-kill))
 
 (use-package embark
   :bind
@@ -52,24 +77,6 @@
 (use-package embark-consult
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
-
-(use-package ace-window
-  :bind ([remap other-window] . ace-window))
-
-(use-package aggressive-indent
-  :bind ("C-c a" . aggressive-indent-mode))
-
-(use-package diminish)
-
-(use-package doom-themes
-  :config
-  (setq doom-vibrant-brighter-comments t
-        doom-vibrant-brighter-modeline t)
-  (doom-themes-org-config)
-  (load-theme 'doom-vibrant t))
-
-(use-package easy-kill
-  :bind ([remap kill-ring-save] . easy-kill))
 
 (use-package magit
   :config
@@ -92,11 +99,20 @@
 (use-package multiple-cursors
   :bind ("C-c m" . mc/edit-lines))
 
-(use-package neotree
-  :config
-  (setq neo-theme 'nerd)
-  :hook (neotree-mode . (lambda () (visual-line-mode -1)))
-  :bind ("C-c t" . neotree-toggle))
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode)
+  :custom
+  (marginalia-max-relative-age 0)
+  (marginalia-align 'right))
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package org
   :config
@@ -157,6 +173,10 @@
 
 (use-package rainbow-mode)
 
+(use-package savehist
+  :init
+  (savehist-mode))
+
 (use-package typescript-mode)
 
 (use-package undo-tree
@@ -180,6 +200,10 @@
         web-mode-enable-auto-opening t
         web-mode-enable-auto-pairing t))
 
+(use-package vertico
+  :init
+  (vertico-mode))
+
 (use-package which-key
   :config
   (which-key-mode))
@@ -201,30 +225,5 @@
 
 (use-package yasnippet-snippets
   :after yasnippet)
-
-(use-package vertico
-  :init
-  (vertico-mode)
-  :custom
-  (vertico-resize t))
-
-(use-package savehist
-  :init
-  (savehist-mode))
-
-(use-package orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion)))))
-
-(use-package marginalia
-  :bind (:map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode)
-  :custom
-  (marginalia-max-relative-age 0)
-  (marginalia-align 'right))
 
 (provide 'packages)
