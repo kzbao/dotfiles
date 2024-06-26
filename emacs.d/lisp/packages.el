@@ -53,10 +53,8 @@
 
 (use-package doom-themes
   :config
-  (setq doom-vibrant-brighter-comments t
-        doom-vibrant-brighter-modeline t)
   (doom-themes-org-config)
-  (load-theme 'doom-vibrant t))
+  (load-theme 'doom-dark+ t))
 
 (use-package easy-kill
   :bind ([remap kill-ring-save] . easy-kill))
@@ -129,12 +127,12 @@
 (use-package powerline
   :config
   (setq powerline-default-separator 'slant)
-  (defface powerline-set1 '((t (:background "#1f5582" :foreground "#bbc2cf" :inherit mode-line)))
+  (defface powerline-set1 '((t (:background "#023F7B" :foreground "#d4d4d4" :inherit mode-line)))
     "Blue with white text")
-  (defface powerline-set2 '((t (:background "#9ca0a4" :foreground "#1c1f24" :inherit mode-line)))
-    "Grey with black text")
-  (defface powerline-set3 '((t (:background "#1c1f24" :foreground "#7bc275" :inherit mode-line)))
-    "Black with green text")
+  (defface powerline-set2 '((t (:background "#313131" :foreground "#1c1c1c" :inherit mode-line)))
+    "Grey with multicolor text")
+  (defface powerline-set3 '((t (:background "#121212" :foreground "#35CDAF" :inherit mode-line)))
+    "Black with teal text")
   (setq-default mode-line-format
                 '("%e"
                   (:eval
@@ -179,15 +177,6 @@
 
 (use-package typescript-mode)
 
-(use-package undo-tree
-  :diminish undo-tree-mode
-  :init
-  (setq undo-tree-auto-save-history nil)
-  :config
-  (global-undo-tree-mode)
-  (setq undo-tree-visualizer-timestamps t
-        undo-tree-visualizer-diff t))
-
 (use-package web-mode
   :mode "\\.html?\\'"
   :config
@@ -203,6 +192,10 @@
 (use-package vertico
   :init
   (vertico-mode))
+
+(use-package vundo
+     :bind
+     ("C-c u" . vundo))
 
 (use-package which-key
   :config
