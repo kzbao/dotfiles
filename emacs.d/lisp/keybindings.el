@@ -8,7 +8,8 @@
                      ("C-c l" . package-list-packages)
                      ("C-c ;" . comment-or-uncomment-region)
                      ("M-p" . beginning-of-buffer)
-                     ("M-n" . end-of-buffer))))
+                     ("M-n" . end-of-buffer)
+                     ("M-/" . hippie-expand))))
   (dolist (kb keybindings)
     (global-set-key (kbd (car kb)) (cdr kb))))
 
