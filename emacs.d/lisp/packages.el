@@ -26,6 +26,30 @@
 (use-package aggressive-indent
   :bind ("C-c a" . aggressive-indent-mode))
 
+(use-package company
+  :demand t
+  :init
+  (setq company-minimum-prefix-length 1
+        company-idle-delay (lambda () (if (company-in-string-or-comment) nil 2))
+        company-selection-wrap-around t
+        company-transformers '(company-sort-by-occurrence
+                               company-sort-by-backend-importance)
+        company-show-quick-access 'left)
+  :bind
+  (:map company-active-map
+        ("RET" . nil)
+        ("<return>" . nil)
+        ("<tab>" . company-complete-common-or-cycle)
+        ("C-<return>" . company-complete)
+        ("C-h" . company-quickhelp-manual-begin))
+  :config
+  (global-company-mode))
+
+(use-package company-quickhelp
+  :config
+  (setq company-quickhelp-delay nil)
+  (company-quickhelp-mode 1))
+
 (use-package consult
   :bind
   (("C-x b" . consult-buffer)
@@ -75,6 +99,18 @@
 (use-package embark-consult
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package eglot
+  :ensure t
+  :hook ((python-mode . eglot-ensure)
+         (js-mode . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+         (eglot-managed-mode . (lambda () (company-mode))))
+  :config
+  (setq eldoc-echo-area-use-multiline-p nil)
+  (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
+  (add-to-list 'eglot-server-programs '(js-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(typescript-mode . ("typescript-language-server" "--stdio"))))
 
 (use-package magit
   :config
