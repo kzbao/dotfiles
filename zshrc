@@ -5,7 +5,7 @@ eval "$(pyenv init --path)"
 
 # Oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(ag docker docker-compose emacs encode64 git macos node nodenv npm postgres pyenv python rbenv ruby)
+plugins=(docker docker-compose emacs encode64 git macos node nodenv npm postgres pyenv python rbenv ruby)
 source $ZSH/oh-my-zsh.sh
 
 # Prompt
